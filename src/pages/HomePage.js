@@ -1,8 +1,9 @@
 import React from 'react';
-import { styled } from '@mui/material';
+import { Stack, styled } from '@mui/material';
 import TopNavbar from '../components/TopNavbar';
 import HeroSection from './HeroSection';
 import IntroductionSection from './IntroductionSection';
+import SlickCarouselSection from './SlickCarouselSection';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -16,7 +17,10 @@ export default function HomePage() {
       <TopNavbar />
       <HeroSection />
       <ContentStyle>
-        <IntroductionSection />
+        <Stack spacing={20}>
+          <IntroductionSection />
+          <SlickCarouselSection />
+        </Stack>
       </ContentStyle>
     </>
   );
