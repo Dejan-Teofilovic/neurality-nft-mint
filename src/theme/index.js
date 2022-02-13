@@ -27,7 +27,7 @@ export default function ThemeConfig({ children }) {
 
   const themeOptions = useMemo(
     () => ({
-      palette: isLight ? { ...palette.light, mode: 'light' } : { ...palette.dark, mode: 'dark' },
+      palette: { ...palette.dark, mode: 'dark' },
       shape,
       typography,
       breakpoints,
