@@ -1,17 +1,7 @@
 import React from 'react';
-import { Button, Stack, styled, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import Incrementer from '../../components/Incrementor';
-
-const ColorButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText(grey[100]),
-  fontSize: { xl: 16, lg: 16, md: 16, sm: 14, xs: 8 },
-  width: '10%',
-  backgroundColor: grey[100],
-  '&:hover': {
-    backgroundColor: grey[400],
-  },
-}));
+import Incrementer from '../components/Incrementor';
 
 export default function MintSection() {
   return (
@@ -30,8 +20,8 @@ export default function MintSection() {
       >Mint</Typography>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={5}>
         <Incrementer available={10} />
-        <ColorButton>Mint</ColorButton>
+        <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 } }}>Mint</Button>
       </Stack>
-    </Stack>
+    </Stack >
   );
 }

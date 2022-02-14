@@ -9,6 +9,7 @@ import WhoWeAreSection from './WhoWeAreSection';
 import JoinCommunitySection from './JoinCommunitySection';
 import FaqSection from './FaqSection';
 import Footer from '../components/Footer';
+import MintSection from './MintSection';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -23,6 +24,7 @@ export default function HomePage() {
       <HeroSection />
       <ContentStyle>
         <Stack spacing={20}>
+          <MintSection />
           {/* <IntroductionSection /> */}
           {/* <SlickCarouselSection /> */}
           {/* <RoadmapSection /> */}
