@@ -10,7 +10,7 @@ import {
 import { Box, Container, Paper, Stack, Typography, Grid, styled } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { MotionInView, varFadeInUp } from '../animations';
-import { useParallax, useParallaxController } from 'react-scroll-parallax';
+import { useParallax } from 'react-scroll-parallax';
 
 /* ------------------------------------------------------------------------------------------------------------- */
 
@@ -55,19 +55,19 @@ const TimelineItem = styled(MuiTimelineItem)(({ theme }) => ({
 /* ------------------------------------------------------------------------------------------------------------- */
 
 export default function RoadmapSection() {
-
-  const parallax = useParallax < HTMLImageElement > ({
-    rotate: [0, 360],
-  });
-
   return (
     <Box>
       <Container maxWidth="lg">
         <Grid container columns={5} spacing={5}>
           <Grid item md={3}>
-            <Typography color="white" variant="h2" textAlign="center">Roadmap</Typography>
+            <Typography
+              color="white"
+              fontSize={{ xl: 56, lg: 56, md: 48, sm: 32, xs: 24 }}
+              fontWeight={700}
+              textAlign="center"
+            >Roadmap</Typography>
             <Box maxWidth="sm" mx="auto" p={3}>
-              <Typography color={grey[500]} fontSize={18} textAlign="center" lineHeight={2}>
+              <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18 }} textAlign="center" lineHeight={{ xs: 1.5, sm: 2 }}>
                 This roadmap outlines our goals and where we want to take MekaVerse. We have a lot of ideas and concepts that we are working on. It may evolve over time and hopefully become even better!
               </Typography>
             </Box>
@@ -81,14 +81,14 @@ export default function RoadmapSection() {
                     </TimelineSeparator>
                     <TimelineContent>
                       <Paper sx={{ p: 3, bgcolor: 'grey.50012' }}>
-                        <Typography fontSize={18} mb={2} fontWeight={800}>
+                        <Typography fontSize={{ xs: 14, sm: 18 }} mb={2} fontWeight={800}>
                           .{item.id}&nbsp;
-                          <Typography component="span" color="white" variant="h4">
+                          <Typography component="span" color="white" fontSize={{ xs: 18, sm: 28 }}>
                             {item.title}
                           </Typography>
                         </Typography>
                         <Stack spacing={2}>
-                          <Typography color={grey[500]} fontSize={18}>
+                          <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18 }}>
                             {item.description}
                           </Typography>
                         </Stack>
@@ -99,10 +99,8 @@ export default function RoadmapSection() {
               </Timeline>
             </MotionInView>
           </Grid>
-          <Grid item md={2}>
-            <div ref={parallax.ref} className="spinner">
-              <Box component="img" src="/assets/images/landing-human.jpg" alt="roadmap" />
-            </div>
+          <Grid item md={2} sx={{ position: 'relative' }}>
+            <Box component="img" src="/assets/images/landing-human.jpg" alt="roadmap" position="absolute" sx={{ top: 250 }} />
           </Grid>
         </Grid>
       </Container>

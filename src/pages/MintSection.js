@@ -14,7 +14,7 @@ export default function MintSection() {
       <Typography
         color={grey[100]}
         fontSize={{ xl: 56, lg: 56, md: 48, sm: 32, xs: 24 }}
-        fontWeight={900}
+        fontWeight={700}
         textTransform="uppercase"
         textAlign="center"
       >Mint</Typography>
