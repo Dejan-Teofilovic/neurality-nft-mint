@@ -8,6 +8,7 @@ import RoadmapSection from './RoadmapSection';
 import WhoWeAreSection from './WhoWeAreSection';
 import JoinCommunitySection from './JoinCommunitySection';
 import FaqSection from './FaqSection';
+import Footer from '../components/Footer';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -19,16 +20,17 @@ export default function HomePage() {
   return (
     <>
       <TopNavbar />
-      <HeroSection />
+      {/* <HeroSection /> */}
       <ContentStyle>
         <Stack spacing={20}>
-          <IntroductionSection />
-          <SlickCarouselSection />
-          <RoadmapSection />
-          <WhoWeAreSection />
-          <FaqSection />
-          <JoinCommunitySection />
+          {/* <IntroductionSection /> */}
+          {/* <SlickCarouselSection /> */}
+          {/* <RoadmapSection /> */}
+          {/* <WhoWeAreSection /> */}
+          {/* <FaqSection /> */}
+          {/* <JoinCommunitySection /> */}
         </Stack>
+        {/* <Footer /> */}
       </ContentStyle>
     </>
   );

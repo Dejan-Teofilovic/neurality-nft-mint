@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
-import { styled, useTheme } from '@mui/material/styles';
-import { Box, AppBar, Toolbar, Container, useMediaQuery, Stack, IconButton } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
 import useOffSetTop from '../hooks/useOffSetTop';
@@ -39,8 +39,6 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
 
 export default function TopNavbar() {
   const isOffset = useOffSetTop(100);
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent', height: 'auto' }}>
       <ToolbarStyle
@@ -49,11 +47,11 @@ export default function TopNavbar() {
           ...(isOffset && {
             bgcolor: 'background.default',
             height: { md: APP_BAR_DESKTOP - 16 }
-          })
+          }),
         }}
       >
         <Container
-          maxWidth="lg"
+          minWidth="lg"
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -61,22 +59,23 @@ export default function TopNavbar() {
           }}
         >
           <RouterLink to="/">
-            <Box component="img" src="/assets/images/logo.jpg" alt="logo" width={isDesktop ? 200 : 80} />
+            <Box component="img" src="/assets/images/logo.jpg" alt="logo" width={{ xs: 140, sm: 180, md: 220 }} />
           </RouterLink>
 
-          <Stack direction="row" justifyContent="center" alignItems="center">
-            <IconButton sx={{ color: grey[100] }}>
-              <Icon icon="ant-design:instagram-filled" />
-            </IconButton>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
+            <Stack direction="row" justifyContent="center" alignItems="center" sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
+                <Icon icon="akar-icons:discord-fill" />
+              </IconButton>
 
-            <IconButton sx={{ color: grey[100] }}>
-              <Icon icon="akar-icons:discord-fill" />
-            </IconButton>
+              <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
+                <Icon icon="akar-icons:twitter-fill" />
+              </IconButton>
+            </Stack>
 
-            <IconButton sx={{ color: grey[100] }}>
-              <Icon icon="akar-icons:twitter-fill" />
-            </IconButton>
+            <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}>Connect Wallet</Button>
           </Stack>
+
         </Container>
       </ToolbarStyle>
 
