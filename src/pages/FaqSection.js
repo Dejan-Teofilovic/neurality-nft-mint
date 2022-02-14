@@ -39,11 +39,16 @@ export default function FaqSection() {
   return (
     <Box>
       <Container maxWidth="lg">
-        <Typography variant="h2" color="white" textAlign="center">
+        <Typography
+          fontSize={{ xl: 56, lg: 56, md: 48, sm: 32, xs: 24 }}
+          fontWeight={700}
+          color="white"
+          textAlign="center"
+        >
           F.A.Q.
         </Typography>
 
-        <Stack spacing={1} mt={5}>
+        <Stack spacing={1} mt={{ xs: 2, sm: 5 }}>
           {
             data.map(dataItem => (
               <Box key={dataItem.question}>
@@ -53,10 +58,13 @@ export default function FaqSection() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography fontSize={18} fontWeight={700}>{dataItem.question}</Typography>
+                    <Typography
+                      fontSize={{ xs: 14, sm: 18 }}
+                      fontWeight={700}
+                    >{dataItem.question}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography color={grey[500]} fontSize={18}>{dataItem.answer}</Typography>
+                    <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18 }}>{dataItem.answer}</Typography>
                   </AccordionDetails>
                 </Accordion>
               </Box>

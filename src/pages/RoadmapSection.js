@@ -10,7 +10,6 @@ import {
 import { Box, Container, Paper, Stack, Typography, Grid, styled } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { MotionInView, varFadeInUp } from '../animations';
-import { useParallax } from 'react-scroll-parallax';
 
 /* ------------------------------------------------------------------------------------------------------------- */
 

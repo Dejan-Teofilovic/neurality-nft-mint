@@ -29,7 +29,7 @@ export default function HomePage() {
           {/* <SlickCarouselSection /> */}
           <RoadmapSection />
           <WhoWeAreSection />
-          {/* <FaqSection /> */}
+          <FaqSection />
           {/* <JoinCommunitySection /> */}
         </Stack>
         {/* <Footer /> */}
