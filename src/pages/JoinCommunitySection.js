@@ -17,7 +17,6 @@ export default function JoinCommunitySection() {
               </motion.div>
             </Stack>
           </Grid>
-          <Grid item md={1}></Grid>
         </Grid>
       </Container>
     </Box >
