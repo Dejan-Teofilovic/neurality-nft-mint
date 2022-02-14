@@ -20,7 +20,7 @@ export default function HomePage() {
   return (
     <>
       <TopNavbar />
-      {/* <HeroSection /> */}
+      <HeroSection />
       <ContentStyle>
         <Stack spacing={20}>
           {/* <IntroductionSection /> */}

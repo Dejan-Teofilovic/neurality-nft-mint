@@ -70,7 +70,7 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div variants={varFadeInRight}>
-              <Button variant="contained" sx={{ borderRadius: 0, fontSize: 18, py: 1, px: 3 }}>View on OpenSea</Button>
+              <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 14, sm: 18 }, py: 1, px: 3 }}>View on OpenSea</Button>
             </motion.div>
           </ContentStyle>
         </Container>
