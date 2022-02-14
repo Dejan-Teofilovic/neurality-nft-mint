@@ -6,6 +6,7 @@ import IntroductionSection from './IntroductionSection';
 import SlickCarouselSection from './SlickCarouselSection';
 import RoadmapSection from './RoadmapSection';
 import WhoWeAreSection from './WhoWeAreSection';
+import JoinCommunitySection from './JoinCommunitySection';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -24,6 +25,7 @@ export default function HomePage() {
           <SlickCarouselSection />
           <RoadmapSection />
           <WhoWeAreSection />
+          <JoinCommunitySection />
         </Stack>
       </ContentStyle>
     </>
