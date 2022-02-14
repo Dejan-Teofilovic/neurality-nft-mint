@@ -23,12 +23,12 @@ export default function HomePage() {
       <TopNavbar />
       <HeroSection />
       <ContentStyle>
-        <Stack spacing={20}>
+        <Stack spacing={{ xs: 8, sm: 16, md: 20 }}>
           <MintSection />
           {/* <IntroductionSection /> */}
           {/* <SlickCarouselSection /> */}
           <RoadmapSection />
-          {/* <WhoWeAreSection /> */}
+          <WhoWeAreSection />
           {/* <FaqSection /> */}
           {/* <JoinCommunitySection /> */}
         </Stack>

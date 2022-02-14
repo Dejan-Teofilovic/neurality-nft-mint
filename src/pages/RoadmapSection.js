@@ -100,7 +100,13 @@ export default function RoadmapSection() {
             </MotionInView>
           </Grid>
           <Grid item md={2} sx={{ position: 'relative' }}>
-            <Box component="img" src="/assets/images/landing-human.jpg" alt="roadmap" position="absolute" sx={{ top: 250 }} />
+            <Box
+              component="img"
+              src="/assets/images/landing-human.jpg"
+              alt="roadmap"
+              position="absolute"
+              sx={{ top: 250, display: { xs: 'none', sm: 'none', md: 'block' } }}
+            />
           </Grid>
         </Grid>
       </Container>
