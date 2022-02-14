@@ -43,15 +43,15 @@ export default function SlickCarouselSection() {
   };
 
   return (
-    <div>
+    <Box>
       <Slider {...settings}>
-        <div><Box component="img" src="/assets/images/whale1.png" alt="whale1" width="95%" /></div>
-        <div><Box component="img" src="/assets/images/whale2.png" alt="whale2" width="95%" /></div>
-        <div><Box component="img" src="/assets/images/whale3.png" alt="whale3" width="95%" /></div>
-        <div><Box component="img" src="/assets/images/whale4.png" alt="whale4" width="95%" /></div>
-        <div><Box component="img" src="/assets/images/whale5.png" alt="whale5" width="95%" /></div>
-        <div><Box component="img" src="/assets/images/whale6.png" alt="whale6" width="95%" /></div>
+        <Box><Box component="img" src="/assets/images/whale1.png" alt="whale1" width="95%" /></Box>
+        <Box><Box component="img" src="/assets/images/whale2.png" alt="whale2" width="95%" /></Box>
+        <Box><Box component="img" src="/assets/images/whale3.png" alt="whale3" width="95%" /></Box>
+        <Box><Box component="img" src="/assets/images/whale4.png" alt="whale4" width="95%" /></Box>
+        <Box><Box component="img" src="/assets/images/whale5.png" alt="whale5" width="95%" /></Box>
+        <Box><Box component="img" src="/assets/images/whale6.png" alt="whale6" width="95%" /></Box>
       </Slider>
-    </div>
+    </Box>
   );
 }

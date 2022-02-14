@@ -4,6 +4,7 @@ import TopNavbar from '../components/TopNavbar';
 import HeroSection from './HeroSection';
 import IntroductionSection from './IntroductionSection';
 import SlickCarouselSection from './SlickCarouselSection';
+import RoadmapSection from './RoadmapSection';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -20,6 +21,7 @@ export default function HomePage() {
         <Stack spacing={20}>
           <IntroductionSection />
           <SlickCarouselSection />
+          <RoadmapSection />
         </Stack>
       </ContentStyle>
     </>
