@@ -30,7 +30,7 @@ export default function HomePage() {
           <RoadmapSection />
           <WhoWeAreSection />
           <FaqSection />
-          {/* <JoinCommunitySection /> */}
+          <JoinCommunitySection />
         </Stack>
         {/* <Footer /> */}
       </ContentStyle>
