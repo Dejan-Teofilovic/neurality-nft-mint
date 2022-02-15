@@ -13,30 +13,32 @@ export default function Footer() {
   return (
     <Box sx={{ py: 10 }}>
       <Container maxWidth="lg">
-        <Grid container alignItems="center">
-          <Grid item md={4}>
+        <Grid container alignItems="center" spacing={{ xs: 5, md: 0 }}>
+          <Grid item xs={12} md={4}>
             <Stack justifyContent="space-between" spacing={10}>
               <Box>
-                <Box component="img" src="/assets/images/logo.jpg" alt="logo" width="60%" />
-                <Typography color={grey[400]} fontSize={18}>
+                <Stack direction="row" justifyContent={{ xs: 'center', md: 'start' }}>
+                  <Box component="img" src="/assets/images/logo.jpg" alt="logo" width="60%" />
+                </Stack>
+                <Typography color={grey[400]} fontSize={18} textAlign={{ xs: 'center', md: 'left' }}>
                   8,888 unique mekas who need drivers.
                 </Typography>
               </Box>
               <Box>
-                <Typography color={grey[600]}>
+                <Typography color={grey[600]} textAlign={{ xs: 'center', md: 'left' }}>
                   ©2022 Neurality. All rights reserved.
                 </Typography>
               </Box>
             </Stack>
           </Grid>
-          <Grid item md={4}></Grid>
-          <Grid item md={4}>
+          <Grid item xs={0} md={4}></Grid>
+          <Grid item xs={12} md={4}>
             <Stack spacing={2}>
-              <Typography color="white" fontSize={18}>Home</Typography>
-              <Box><Link href="#">Team</Link></Box>
-              <Box><Link href="#">Terms & conditions</Link></Box>
+              <Typography color="white" fontSize={18} textAlign={{ xs: 'center', md: 'left' }}>Home</Typography>
+              <Stack direction="row" justifyContent={{ xs: 'center', md: 'left' }}><Link href="#">Team</Link></Stack>
+              <Stack direction="row" justifyContent={{ xs: 'center', md: 'left' }}><Link href="#">Terms & conditions</Link></Stack>
             </Stack>
-            <Stack direction="row" spacing={1} mt={8}>
+            <Stack direction="row" justifyContent={{ xs: 'center', sm: 'left' }} spacing={1} mt={8}>
               <Button variant="contained" sx={{ borderRadius: 0, fontSize: 18, p: 1 }}>
                 <Icon icon="akar-icons:twitter-fill" />
               </Button>

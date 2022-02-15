@@ -32,7 +32,7 @@ export default function HomePage() {
           <FaqSection />
           <JoinCommunitySection />
         </Stack>
-        {/* <Footer /> */}
+        <Footer />
       </ContentStyle>
     </>
   );
