@@ -10,6 +10,8 @@ import JoinCommunitySection from './JoinCommunitySection';
 import FaqSection from './FaqSection';
 import Footer from '../components/Footer';
 import WhitelistSection from './WhitelistSection';
+import AlertMessage from '../components/AlertMessage';
+import useAlertMessage from '../hooks/useAlertMessage';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -18,6 +20,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function HomePage() {
+  const { severity } = useAlertMessage();
   return (
     <>
       <TopNavbar />
@@ -35,6 +38,8 @@ export default function HomePage() {
         </Stack>
         <Footer />
       </ContentStyle>
+      {severity && <AlertMessage />}
+
     </>
   );
 }

@@ -1,8 +1,11 @@
 import React from 'react';
 import { Stack, Typography, Button } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import useWhitelist from '../hooks/useWhitelist';
 
 export default function WhitelistSection() {
+  const { activeWhitelist } = useWhitelist();
+
   return (
     <Stack
       maxWidth="lg"
@@ -18,7 +21,7 @@ export default function WhitelistSection() {
         textAlign="center"
       >Add To Whitelist</Typography>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={5}>
-        <Typography>To be registered in Whitelist 1: </Typography>
+        <Typography>To be registered in { activeWhitelist.name }: </Typography>
         <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 } }}>Click here</Button>
       </Stack>
     </Stack >

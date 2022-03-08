@@ -51,7 +51,7 @@ export default function TopNavbar() {
         }}
       >
         <Container
-          minWidth="lg"
+          maxWidth="lg"
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -75,7 +75,6 @@ export default function TopNavbar() {
 
             <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}>Connect Wallet</Button>
           </Stack>
-
         </Container>
       </ToolbarStyle>
 
