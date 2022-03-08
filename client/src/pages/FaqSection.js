@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { grey } from '@mui/material/colors';
-import { varFadeInUp, MotionInView, varFadeInDown } from '../animations';
+// import { varFadeInUp, MotionInView, varFadeInDown } from '../animations';
 
 
 const data = [

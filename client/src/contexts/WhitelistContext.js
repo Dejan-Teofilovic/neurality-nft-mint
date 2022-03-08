@@ -25,6 +25,7 @@ const reducer = (state, action) =>
 const WhitelistContext = createContext({
   ...initialState,
   getActiveWhitelist: () => Promise.resolve(),
+  addAddressToWhitelist: () => Promise.resolve()
 });
 
 //  Provider
@@ -36,17 +37,32 @@ function WhitelistProvider({ children }) {
   const getActiveWhitelist = () => {
     api.get('/whitelist/getActiveWhitelist')
       .then(response => {
-        dispatch({
-          type: 'SET_ACTIVE_WHITELIST',
-          payload: response.data[0]
-        });
+        if (response.data.length > 0) {
+          dispatch({
+            type: 'SET_ACTIVE_WHITELIST',
+            payload: response.data[0]
+          });
+        } else {
+          dispatch({
+            type: 'SET_ACTIVE_WHITELIST',
+            payload: null
+          });
+        }
       })
       .catch(error => {
         openAlert({
           severity: ERROR,
           message: error.response.data
         });
+        dispatch({
+          type: 'SET_ACTIVE_WHITELIST',
+          payload: null
+        });
       });
+  };
+
+  const addAddressToWhitelist = (address, whitelistId) => {
+
   };
 
   useEffect(() => {
@@ -58,6 +74,7 @@ function WhitelistProvider({ children }) {
       value={{
         ...state,
         getActiveWhitelist,
+        addAddressToWhitelist
       }}
     >
       {children}

@@ -13,8 +13,12 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "assert": "^2.0.0",
+    "crypto-browserify": "^3.12.0",
+    "ethers": "^5.5.4",
     "framer-motion": "^6.2.4",
     "react": "^17.0.2",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^17.0.2",
     "react-intersection-observer": "^8.33.1",
     "react-router": "^6.2.1",
@@ -23,12 +27,15 @@
     "react-scroll-parallax": "^3.0.3",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
+    "stream": "^0.0.2",
+    "url": "^0.11.0",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

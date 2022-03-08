@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton } from '@mui/material';
+import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
+import { useMetaMask } from 'metamask-react';
 import useOffSetTop from '../hooks/useOffSetTop';
+import useWallet from '../hooks/useWallet';
 
 // ----------------------------------------------------------------------
 
@@ -39,6 +41,8 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
 
 export default function TopNavbar() {
   const isOffset = useOffSetTop(100);
+  const { connectWallet, currentAccount, walletConnected } = useWallet();
+
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent', height: 'auto' }}>
       <ToolbarStyle
@@ -73,7 +77,18 @@ export default function TopNavbar() {
               </IconButton>
             </Stack>
 
-            <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}>Connect Wallet</Button>
+            {
+              walletConnected ? (
+                <Typography>{currentAccount}</Typography>
+              ) : (
+                <Button
+                  variant="contained"
+                  sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}
+                  onClick={() => connectWallet()}
+                >Connect Wallet</Button>
+              )
+            }
+
           </Stack>
         </Container>
       </ToolbarStyle>

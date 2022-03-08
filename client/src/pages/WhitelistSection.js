@@ -6,6 +6,10 @@ import useWhitelist from '../hooks/useWhitelist';
 export default function WhitelistSection() {
   const { activeWhitelist } = useWhitelist();
 
+  const addAddressToWhitelist = () => {
+    
+  }
+
   return (
     <Stack
       maxWidth="lg"
@@ -21,8 +25,12 @@ export default function WhitelistSection() {
         textAlign="center"
       >Add To Whitelist</Typography>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={5}>
-        <Typography>To be registered in { activeWhitelist.name }: </Typography>
-        <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 } }}>Click here</Button>
+        <Typography>To be registered in {activeWhitelist.name}: </Typography>
+        <Button
+          variant="contained"
+          sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 } }}
+          onClick={addAddressToWhitelist}
+        >Click here</Button>
       </Stack>
     </Stack >
   );
