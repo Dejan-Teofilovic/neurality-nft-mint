@@ -2,13 +2,25 @@ import React from 'react';
 import { Stack, Typography, Button } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import useWhitelist from '../hooks/useWhitelist';
+import useWallet from '../hooks/useWallet';
+import useAlertMessage from '../hooks/useAlertMessage';
+import { WARNING } from '../utils/constants';
 
 export default function WhitelistSection() {
-  const { activeWhitelist } = useWhitelist();
+  const { activeWhitelist, addAddressToWhitelist, isWhitelisted } = useWhitelist();
+  const { walletConnected, currentAccount } = useWallet();
+  const { openAlert } = useAlertMessage();
 
-  const addAddressToWhitelist = () => {
-    
-  }
+  const registerIntoWhitelist = () => {
+    if (walletConnected) {
+      addAddressToWhitelist(currentAccount, activeWhitelist.id_whitelist);
+    } else {
+      openAlert({
+        severity: WARNING,
+        message: 'Please connect your wallet.'
+      });
+    }
+  };
 
   return (
     <Stack
@@ -24,14 +36,20 @@ export default function WhitelistSection() {
         textTransform="uppercase"
         textAlign="center"
       >Add To Whitelist</Typography>
-      <Stack direction="row" justifyContent="center" alignItems="center" spacing={5}>
-        <Typography>To be registered in {activeWhitelist.name}: </Typography>
-        <Button
-          variant="contained"
-          sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 } }}
-          onClick={addAddressToWhitelist}
-        >Click here</Button>
-      </Stack>
-    </Stack >
+      {
+        isWhitelisted ? (
+          <Typography textAlign="center">You're whitelisted.</Typography>
+        ) : (
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={5}>
+            <Typography>To be registered in {activeWhitelist.name}: </Typography>
+            <Button
+              variant="contained"
+              sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 } }}
+              onClick={registerIntoWhitelist}
+            >Click here</Button>
+          </Stack>
+        )
+      }
+    </Stack>
   );
 }

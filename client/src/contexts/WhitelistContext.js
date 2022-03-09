@@ -1,19 +1,26 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import api from '../utils/api';
-import { ERROR } from '../utils/constants';
+import { ERROR, SUCCESS } from '../utils/constants';
 import { AlertMessageContext } from './AlertMessageContext';
 
 // ----------------------------------------------------------------------
 
 const initialState = {
-  activeWhitelist: null
+  activeWhitelist: null,
+  isWhitelisted: false
 };
 
 const handlers = {
   SET_ACTIVE_WHITELIST: (state, action) => {
     return {
       ...state,
-      activeWhitelist: action.payload
+      activeWhitelist: action.payload,
+    };
+  },
+  SET_IS_WHITELISTED: (state, action) => {
+    return {
+      ...state,
+      isWhitelisted: action.payload
     };
   }
 };
@@ -25,7 +32,8 @@ const reducer = (state, action) =>
 const WhitelistContext = createContext({
   ...initialState,
   getActiveWhitelist: () => Promise.resolve(),
-  addAddressToWhitelist: () => Promise.resolve()
+  addAddressToWhitelist: () => Promise.resolve(),
+  checkAddressIsWhitelisted: () => Promise.resolve()
 });
 
 //  Provider
@@ -61,8 +69,43 @@ function WhitelistProvider({ children }) {
       });
   };
 
+  //  Add an address to the active whitelist
   const addAddressToWhitelist = (address, whitelistId) => {
+    api.post('/whitelist/addAddressToWhitelist', { address, whitelistId })
+      .then(response => {
+        openAlert({
+          severity: SUCCESS,
+          message: response.data
+        });
+      })
+      .catch(error => {
+        openAlert({
+          severity: ERROR,
+          message: error.response.data
+        });
+      });
+  };
 
+  //  Check the current account is whitelisted
+  const checkAddressIsWhitelisted = (address) => {
+    const whitelistId = state.activeWhitelist.id_whitelist;
+    api.post('/whitelist/checkAddressIsWhitelisted', { address, whitelistId })
+      .then(response => {
+        dispatch({
+          type: 'SET_IS_WHITELISTED',
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        openAlert({
+          severity: ERROR,
+          message: error.response.data
+        });
+        dispatch({
+          type: 'SET_IS_WHITELISTED',
+          payload: false
+        });
+      });
   };
 
   useEffect(() => {
@@ -74,7 +117,8 @@ function WhitelistProvider({ children }) {
       value={{
         ...state,
         getActiveWhitelist,
-        addAddressToWhitelist
+        addAddressToWhitelist,
+        checkAddressIsWhitelisted
       }}
     >
       {children}

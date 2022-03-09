@@ -11,6 +11,7 @@ import WhitelistSection from './WhitelistSection';
 import AlertMessage from '../components/AlertMessage';
 import useAlertMessage from '../hooks/useAlertMessage';
 import useWhitelist from '../hooks/useWhitelist';
+import useWallet from '../hooks/useWallet';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -21,6 +22,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 export default function HomePage() {
   const { severity } = useAlertMessage();
   const { activeWhitelist } = useWhitelist();
+  const { walletConnected } = useWallet();
 
   return (
     <>
@@ -29,7 +31,7 @@ export default function HomePage() {
       <ContentStyle>
         <Stack spacing={{ xs: 8, sm: 16, md: 20 }}>
           {
-            activeWhitelist && <WhitelistSection />
+            (activeWhitelist && walletConnected) && <WhitelistSection />
           }
           <RoadmapSection />
           <WhoWeAreSection />

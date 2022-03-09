@@ -1,14 +1,26 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import { useMetaMask } from 'metamask-react';
-import { INFO, ERROR, SUCCESS, WARNING, CHAIN_ID, SWITCH_ERROR_CODE, CHAIN_NAME, RPC_URLS, BLOCK_EXPLORER_URLS, NATIVE_CURRENCY_NAME, NATIVE_CURRENCY_SYMBOL, DECIMALS } from '../utils/constants';
+import {
+  ERROR,
+  SUCCESS,
+  CHAIN_ID,
+  SWITCH_ERROR_CODE,
+  CHAIN_NAME,
+  RPC_URLS,
+  BLOCK_EXPLORER_URLS,
+  NATIVE_CURRENCY_NAME,
+  NATIVE_CURRENCY_SYMBOL,
+  DECIMALS
+} from '../utils/constants';
 import { AlertMessageContext } from './AlertMessageContext';
+import { WhitelistContext } from './WhitelistContext';
 
 // ----------------------------------------------------------------------
 
 const initialState = {
   walletConnected: false,
   currentAccount: '',
-  mintAmount: 1,
+  mintAmount: 1
 };
 
 const handlers = {
@@ -46,6 +58,7 @@ const WalletContext = createContext({
 function WalletProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { openAlert } = useContext(AlertMessageContext);
+  const { checkAddressIsWhitelisted } = useContext(WhitelistContext);
   const { connect, account, chainId, ethereum } = useMetaMask();
 
   const connectWallet = async () => {
@@ -62,10 +75,13 @@ function WalletProvider({ children }) {
         payload: true
       });
 
+      checkAddressIsWhitelisted(account);
+
       openAlert({
         severity: SUCCESS,
         message: 'Connected.'
       });
+
     } else {
       if (ethereum) {
         //  If the current network isn't the expected one, switch it to the expected one.
@@ -84,6 +100,8 @@ function WalletProvider({ children }) {
             type: 'SET_WALLET_CONNECTED',
             payload: true
           });
+
+          checkAddressIsWhitelisted(account);
         } catch (switchError) {
           //  If the expected network isn't existed in the metamask.
           if (switchError.code === SWITCH_ERROR_CODE) {
@@ -112,8 +130,9 @@ function WalletProvider({ children }) {
               type: 'SET_WALLET_CONNECTED',
               payload: true
             });
+
+            checkAddressIsWhitelisted(account);
           } else {
-            console.log('### switchError: ', switchError);
             dispatch({
               type: 'SET_CURRENT_ACCOUNT',
               payload: ''

@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react';
-import { SUCCESS } from '../utils/constants';
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -54,7 +53,6 @@ function AlertMessageProvider({ children }) {
    * @param {object} param0 
    */
   const openAlert = ({ severity, message }) => {
-    console.log(severity);
     dispatch({
       type: 'SET_IS_OPENED',
       payload: true

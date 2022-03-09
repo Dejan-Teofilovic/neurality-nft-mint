@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles';
 import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
-import { useMetaMask } from 'metamask-react';
 import useOffSetTop from '../hooks/useOffSetTop';
 import useWallet from '../hooks/useWallet';
 
