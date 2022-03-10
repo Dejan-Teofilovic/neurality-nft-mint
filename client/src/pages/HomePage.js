@@ -1,6 +1,5 @@
 import React from 'react';
 import { Stack, styled } from '@mui/material';
-import TopNavbar from '../components/TopNavbar';
 import HeroSection from './HeroSection';
 import RoadmapSection from './RoadmapSection';
 import WhoWeAreSection from './WhoWeAreSection';
