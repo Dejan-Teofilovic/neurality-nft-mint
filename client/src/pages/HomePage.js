@@ -26,7 +26,6 @@ export default function HomePage() {
 
   return (
     <>
-      <TopNavbar />
       <HeroSection />
       <ContentStyle>
         <Stack spacing={{ xs: 8, sm: 16, md: 20 }}>

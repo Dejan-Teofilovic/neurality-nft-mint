@@ -28,11 +28,11 @@ const GREY = {
   500_80: alpha('#919EAB', 0.8)
 };
 const PRIMARY = {
-  lighter: '#BA67FF',
-  light: '#9832EC',
+  lighter: '#7F1BD2',
+  light: '#7F1BD2',
   main: '#7F1BD2',
-  dark: '#6415A6',
-  darker: '#4B137A',
+  dark: '#7F1BD2',
+  darker: '#7F1BD2',
   contrastText: '#FFF'
 };
 const SECONDARY = {

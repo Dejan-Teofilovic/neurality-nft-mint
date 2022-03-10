@@ -12,14 +12,12 @@ export default function App() {
     <ThemeConfig>
       <MetaMaskProvider>
         <AlertMessageProvider>
-
           <WhitelistProvider>
             <WalletProvider>
               <Router>
                 <Routes />
               </Router>
             </WalletProvider>
-
           </WhitelistProvider>
         </AlertMessageProvider>
       </MetaMaskProvider>
