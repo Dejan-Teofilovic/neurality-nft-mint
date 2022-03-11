@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import api from '../utils/api';
-import { ERROR, SUCCESS } from '../utils/constants';
+import { ERROR, INFO, SUCCESS } from '../utils/constants';
 import { AlertMessageContext } from './AlertMessageContext';
 // ----------------------------------------------------------------------
 
@@ -47,7 +47,11 @@ function AdminAuthProvider({ children }) {
         });
       })
       .catch(error => {
-        adminSignOut();
+        dispatch({
+          type: 'SET_ACCESS_TOKEN',
+          payload: ''
+        });
+        localStorage.removeItem('accessToken');
         openAlert({
           severity: ERROR,
           message: error.response.data
@@ -62,6 +66,11 @@ function AdminAuthProvider({ children }) {
       payload: ''
     });
     localStorage.removeItem('accessToken');
+    console.log('# openAlert: ', openAlert);
+    openAlert({
+      severity: INFO,
+      message: "You're signed out."
+    });
   };
 
   useEffect(() => {

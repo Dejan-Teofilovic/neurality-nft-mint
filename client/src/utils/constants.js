@@ -22,3 +22,4 @@ export const DECIMALS = 18;
 // export const DECIMALS = 18;
 
 export const SWITCH_ERROR_CODE = 4902;
+export const TRUE = 'ture';

@@ -72,3 +72,13 @@ exports.checkAddressIsWhitelisted = (req, res) => {
 exports.setActiveWhitelist = (req, res) => {
   const { whitelistId } = req.params;
 };
+
+//  Get all whitelists
+exports.getAllWhitelists = (req, res) => {
+  db.query("SELECT * FROM whitelists", (error, results) => {
+    if (error) {
+      return res.status(500).send(DB_ERROR);
+    }
+    return res.status(200).send(results);
+  });
+};

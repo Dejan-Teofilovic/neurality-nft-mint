@@ -7,8 +7,6 @@ import JoinCommunitySection from './JoinCommunitySection';
 import FaqSection from './FaqSection';
 import Footer from '../components/Footer';
 import WhitelistSection from './WhitelistSection';
-import AlertMessage from '../components/AlertMessage';
-import useAlertMessage from '../hooks/useAlertMessage';
 import useWhitelist from '../hooks/useWhitelist';
 import useWallet from '../hooks/useWallet';
 
@@ -19,7 +17,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function HomePage() {
-  const { severity } = useAlertMessage();
   const { activeWhitelist } = useWhitelist();
   const { walletConnected } = useWallet();
 
@@ -38,7 +35,6 @@ export default function HomePage() {
         </Stack>
         <Footer />
       </ContentStyle>
-      {severity && <AlertMessage />}
     </>
   );
 }

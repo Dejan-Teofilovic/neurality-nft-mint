@@ -7,7 +7,8 @@ import { AlertMessageContext } from './AlertMessageContext';
 
 const initialState = {
   activeWhitelist: null,
-  isWhitelisted: false
+  isWhitelisted: false,
+  whitelists: []
 };
 
 const handlers = {
@@ -22,6 +23,12 @@ const handlers = {
       ...state,
       isWhitelisted: action.payload
     };
+  },
+  SET_WHITELISTS: (state, action) => {
+    return {
+      ...state,
+      whitelists: action.payload
+    };
   }
 };
 
@@ -33,7 +40,8 @@ const WhitelistContext = createContext({
   ...initialState,
   getActiveWhitelist: () => Promise.resolve(),
   addAddressToWhitelist: () => Promise.resolve(),
-  checkAddressIsWhitelisted: () => Promise.resolve()
+  checkAddressIsWhitelisted: () => Promise.resolve(),
+  getAllWhitelists: () => Promise.resolve()
 });
 
 //  Provider
@@ -108,6 +116,27 @@ function WhitelistProvider({ children }) {
       });
   };
 
+  //  Get all whitelists
+  const getAllWhitelists = () => {
+    api.get('/whitelist/getAllWhitelists')
+      .then(response => {
+        dispatch({
+          type: 'SET_WHITELISTS',
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        openAlert({
+          severity: ERROR,
+          message: error.response.data
+        });
+        dispatch({
+          type: 'SET_WHITELISTS',
+          payload: []
+        });
+      });
+  };
+
   useEffect(() => {
     getActiveWhitelist();
   }, []);
@@ -118,7 +147,8 @@ function WhitelistProvider({ children }) {
         ...state,
         getActiveWhitelist,
         addAddressToWhitelist,
-        checkAddressIsWhitelisted
+        checkAddressIsWhitelisted,
+        getAllWhitelists
       }}
     >
       {children}
