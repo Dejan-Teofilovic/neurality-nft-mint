@@ -23,6 +23,7 @@ app.use(express.json());
 
 // Define Routes
 app.use('/api/whitelist', require('./routes/whitelistRoute'));
+app.use('/api/admin', require('./routes/adminRoute'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

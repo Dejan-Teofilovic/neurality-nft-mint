@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Card, CardContent, CardHeader, Stack, TextField } from '@mui/material';
+import { Button, Card, CardContent, CardHeader, Stack, TextField, Typography } from '@mui/material';
 import { string, object } from 'yup';
 import { useFormik } from "formik";
 import { Icon } from '@iconify/react';
-import Typography from '../../theme/overrides/Typography';
+import useAdminAuth from '../../hooks/useAdminAuth';
 
 // -------------------------------------------------------------------------------------------
 
@@ -14,13 +14,15 @@ const validSchema = object().shape({
 // -------------------------------------------------------------------------------------------
 
 export default function AdminLogin() {
+  const { adminSignIn } = useAdminAuth();
   const formik = useFormik({
     initialValues: {
       password: '',
     },
     validationSchema: validSchema,
     onSubmit: (values) => {
-      console.log(values);
+      const { password } = values;
+      adminSignIn(password);
     }
   });
 
@@ -56,7 +58,7 @@ export default function AdminLogin() {
                 fullWidth
               />
               <Stack direction="row" justifyContent="center" onClick={formik.handleSubmit}>
-                <Button>Log in</Button>
+                <Button variant="contained" sx={{ borderRadius: 0, fontSize: 18 }}>Log in</Button>
               </Stack>
             </Stack>
           </CardContent>

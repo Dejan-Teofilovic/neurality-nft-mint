@@ -34,7 +34,7 @@ function AdminAuthProvider({ children }) {
 
   //  Sign in
   const adminSignIn = (password) => {
-    api.post('/admin/login', { password })
+    api.post('/admin/adminSignIn', { password })
       .then(response => {
         dispatch({
           type: 'SET_ACCESS_TOKEN',

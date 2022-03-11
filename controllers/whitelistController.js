@@ -1,18 +1,40 @@
 const db = require('../utils/db');
-const { DB_ERROR, NO_DATA, SUCCESS } = require('./messages');
+const { DB_ERROR, SUCCESS, SERVER_ERROR } = require('../utils/messages');
 
 /* --------------------------- For clients ------------------------------ */
 
 //  Add a address to a whitelist
-exports.addAddressToWhitelist = (req, res) => {
+exports.addAddressToWhitelist = async (req, res) => {
   const { address, whitelistId } = req.body;
-  console.log('###address: ', address);
-  console.log('###whitelistId: ', whitelistId);
+
+  db.query(
+    `SELECT * FROM whitelisted_addresses WHERE address = '${address}' AND id_whitelist = ${whitelistId}`,
+    (error1, existedAddresses) => {
+      if (error1) {
+        return res.status(500).send(SERVER_ERROR);
+      } else {
+        if (existedAddresses.length > 0) {
+          return res.status(500).send('The address is already whitelisted.');
+        } else {
+          db.query(
+            `INSERT INTO whitelisted_addresses (address, id_whitelist) VALUES ('${address}', ${whitelistId})`,
+            (error2, result) => {
+              if (error2) {
+                console.log('### error2: ', error2);
+                return res.status(500).send(SERVER_ERROR);
+              } else {
+                return res.status(200).send(SUCCESS);
+              }
+            }
+          );
+        }
+      }
+    }
+  );
 };
 
 //  Get active whitelist
 exports.getActiveWhitelist = (req, res) => {
-  console.log('###controllerName: getActiveWhitelist');
   db.query(
     "SELECT * FROM whitelists WHERE active = 'true'",
     (error, result) => {
@@ -27,6 +49,23 @@ exports.getActiveWhitelist = (req, res) => {
   );
 };
 
+//  Check the address is whitelisted
+exports.checkAddressIsWhitelisted = (req, res) => {
+  const { address, whitelistId } = req.body;
+  db.query(
+    `SELECT * FROM whitelisted_addresses WHERE address = '${address}' AND id_whitelist = ${whitelistId}`,
+    (error, results) => {
+      if (error) {
+        return res.status(500).send(SERVER_ERROR);
+      }
+      if (results.length > 0) {
+        return res.status(200).send(true);
+      } else {
+        return res.status(200).send(false);
+      }
+    }
+  );
+};
 
 /* --------------------------- For admins ------------------------------ */
 //  Active a whitelist
