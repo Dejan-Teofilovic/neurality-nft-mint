@@ -6,11 +6,13 @@ import { TRUE } from '../../utils/constants';
 
 export default function SelectWhitelist() {
   const { getAllWhitelists, whitelists } = useWhitelist();
-  const { adminSignOut } = useAdminAuth();
+  const { adminSignOut, accessToken } = useAdminAuth();
 
   useEffect(() => {
-    getAllWhitelists();
-  }, []);
+    if (accessToken) {
+      getAllWhitelists();
+    }
+  }, [accessToken]);
 
   return (
     <Stack justifyContent="center" height="100vh">

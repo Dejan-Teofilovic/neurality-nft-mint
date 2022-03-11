@@ -6,10 +6,11 @@ const {
   checkAddressIsWhitelisted,
   getAllWhitelists
 } = require('../controllers/whitelistController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 router.post('/addAddressToWhitelist', addAddressToWhitelist);
 router.get('/getActiveWhitelist', getActiveWhitelist);
 router.post('/checkAddressIsWhitelisted', checkAddressIsWhitelisted);
-router.get('/getAllWhitelists', getAllWhitelists);
+router.get('/getAllWhitelists', authMiddleware, getAllWhitelists);
 
 module.exports = router;

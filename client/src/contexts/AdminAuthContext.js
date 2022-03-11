@@ -37,24 +37,24 @@ function AdminAuthProvider({ children }) {
   const adminSignIn = (password) => {
     api.post('/admin/adminSignIn', { password })
       .then(response => {
+        setAuthToken(response.data);
         dispatch({
           type: 'SET_ACCESS_TOKEN',
           payload: response.data
         });
         localStorage.setItem('accessToken', response.data);
-        setAuthToken(response.data);
         openAlert({
           severity: SUCCESS,
           message: 'You are signed!'
         });
       })
       .catch(error => {
+        setAuthToken(null);
         dispatch({
           type: 'SET_ACCESS_TOKEN',
           payload: ''
         });
         localStorage.removeItem('accessToken');
-        setAuthToken(null);
         openAlert({
           severity: ERROR,
           message: error.response.data
@@ -64,13 +64,12 @@ function AdminAuthProvider({ children }) {
 
   //  Sign out
   const adminSignOut = () => {
+    setAuthToken(null);
     dispatch({
       type: 'SET_ACCESS_TOKEN',
       payload: ''
     });
     localStorage.removeItem('accessToken');
-    setAuthToken(null);
-    console.log('# openAlert: ', openAlert);
     openAlert({
       severity: INFO,
       message: "You're signed out."
@@ -80,11 +79,13 @@ function AdminAuthProvider({ children }) {
   useEffect(() => {
     const localAccessToken = localStorage.getItem('accessToken');
     if (localAccessToken) {
+      setAuthToken(localAccessToken);
       dispatch({
         type: 'SET_ACCESS_TOKEN',
         payload: localAccessToken
       });
     } else {
+      setAuthToken(null);
       dispatch({
         type: 'SET_ACCESS_TOKEN',
         payload: ''
