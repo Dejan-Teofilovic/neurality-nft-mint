@@ -4,6 +4,8 @@ import { string, object } from 'yup';
 import { useFormik } from "formik";
 import { Icon } from '@iconify/react';
 import useAdminAuth from '../../hooks/useAdminAuth';
+import useAlertMessage from '../../hooks/useAlertMessage';
+import AlertMessage from '../../components/AlertMessage';
 
 // -------------------------------------------------------------------------------------------
 
@@ -15,6 +17,7 @@ const validSchema = object().shape({
 
 export default function AdminLogin() {
   const { adminSignIn } = useAdminAuth();
+  const { severity } = useAlertMessage();
   const formik = useFormik({
     initialValues: {
       password: '',
@@ -64,6 +67,7 @@ export default function AdminLogin() {
           </CardContent>
         </Card>
       </Stack>
+      {severity && <AlertMessage />}
     </Stack>
   );
 }

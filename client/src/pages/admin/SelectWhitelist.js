@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { Card, CardContent, CardHeader, FormControlLabel, Radio, RadioGroup, Stack } from '@mui/material';
+import { Card, CardContent, CardHeader, FormControlLabel, Radio, RadioGroup, Stack, Button } from '@mui/material';
 import useWhitelist from '../../hooks/useWhitelist';
+import useAdminAuth from '../../hooks/useAdminAuth';
 import { TRUE } from '../../utils/constants';
 
 export default function SelectWhitelist() {
   const { getAllWhitelists, whitelists } = useWhitelist();
+  const { adminSignOut } = useAdminAuth();
 
   useEffect(() => {
     getAllWhitelists();
@@ -48,6 +50,11 @@ export default function SelectWhitelist() {
                   </RadioGroup>
                 )
               }
+
+              <Stack direction="row" justifyContent="space-between" alignItems="center">
+                <Button variant="outlined" onClick={adminSignOut}>Sign out</Button>
+                <Button variant="contained">Active</Button>
+              </Stack>
             </Stack>
           </CardContent>
         </Card>

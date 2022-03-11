@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import api from '../utils/api';
 import { ERROR, INFO, SUCCESS } from '../utils/constants';
+import setAuthToken from '../utils/setAuthToken';
 import { AlertMessageContext } from './AlertMessageContext';
 // ----------------------------------------------------------------------
 
@@ -41,6 +42,7 @@ function AdminAuthProvider({ children }) {
           payload: response.data
         });
         localStorage.setItem('accessToken', response.data);
+        setAuthToken(response.data);
         openAlert({
           severity: SUCCESS,
           message: 'You are signed!'
@@ -52,6 +54,7 @@ function AdminAuthProvider({ children }) {
           payload: ''
         });
         localStorage.removeItem('accessToken');
+        setAuthToken(null);
         openAlert({
           severity: ERROR,
           message: error.response.data
@@ -66,6 +69,7 @@ function AdminAuthProvider({ children }) {
       payload: ''
     });
     localStorage.removeItem('accessToken');
+    setAuthToken(null);
     console.log('# openAlert: ', openAlert);
     openAlert({
       severity: INFO,
