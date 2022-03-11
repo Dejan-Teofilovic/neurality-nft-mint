@@ -1,5 +1,13 @@
 const db = require('../utils/db');
-const { DB_ERROR, SUCCESS, SERVER_ERROR, TRUE, MINT_IS_FINISHED } = require('../utils/messages');
+const {
+  DB_ERROR,
+  SUCCESS,
+  SERVER_ERROR,
+  TRUE,
+  MINT_IS_FINISHED,
+  MINT_AMOUNT_FOR_WHITELIST_1,
+  MINT_AMOUNT_FOR_WHITELIST_2
+} = require('../utils/messages');
 
 /* --------------------------- For clients ------------------------------ */
 
@@ -7,38 +15,51 @@ const { DB_ERROR, SUCCESS, SERVER_ERROR, TRUE, MINT_IS_FINISHED } = require('../
 exports.addAddressToWhitelist = async (req, res) => {
   const { address, whitelistId } = req.body;
 
-  db.query('SELECT COUNT(id_address) AS numberOfAddresses FROM whitelist_addresses', (error, result) => {
-    if (error) {
-      return res.status(500).send(DB_ERROR);
+  db.query(
+    `SELECT COUNT(id_address) AS numberOfAddresses FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
+    (error, result) => {
+      if (error) {
+        console.log('# error: ', error);
+        return res.status(500).send(DB_ERROR);
+      }
+
+      if (whitelistId == 1) {
+        if (result[0].numberOfAddresses > MINT_AMOUNT_FOR_WHITELIST_1) {
+          return res.status(406).send(REGISTER_FINISHED);
+        }
+      }
+
+      if (whitelistId == 2) {
+        if (result[0].numberOfAddresses > MINT_AMOUNT_FOR_WHITELIST_2) {
+          return res.status(406).send(REGISTER_FINISHED);
+        }
+      }
+    });
+
+  db.query(
+    `SELECT * FROM whitelisted_addresses WHERE address = '${address}' AND id_whitelist = ${whitelistId}`,
+    (error1, existedAddresses) => {
+      if (error1) {
+        return res.status(500).send(SERVER_ERROR);
+      } else {
+        if (existedAddresses.length > 0) {
+          return res.status(500).send('The address is already whitelisted.');
+        } else {
+          db.query(
+            `INSERT INTO whitelisted_addresses (address, id_whitelist) VALUES ('${address}', ${whitelistId})`,
+            (error2, result) => {
+              if (error2) {
+                console.log('### error2: ', error2);
+                return res.status(500).send(SERVER_ERROR);
+              } else {
+                return res.status(200).send(SUCCESS);
+              }
+            }
+          );
+        }
+      }
     }
-
-    console.log('# result: ', result);
-  });
-
-  // db.query(
-  //   `SELECT * FROM whitelisted_addresses WHERE address = '${address}' AND id_whitelist = ${whitelistId}`,
-  //   (error1, existedAddresses) => {
-  //     if (error1) {
-  //       return res.status(500).send(SERVER_ERROR);
-  //     } else {
-  //       if (existedAddresses.length > 0) {
-  //         return res.status(500).send('The address is already whitelisted.');
-  //       } else {
-  //         db.query(
-  //           `INSERT INTO whitelisted_addresses (address, id_whitelist) VALUES ('${address}', ${whitelistId})`,
-  //           (error2, result) => {
-  //             if (error2) {
-  //               console.log('### error2: ', error2);
-  //               return res.status(500).send(SERVER_ERROR);
-  //             } else {
-  //               return res.status(200).send(SUCCESS);
-  //             }
-  //           }
-  //         );
-  //       }
-  //     }
-  //   }
-  // );
+  );
 };
 
 //  Get active whitelist

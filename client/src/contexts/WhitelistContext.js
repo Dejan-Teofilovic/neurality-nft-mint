@@ -82,6 +82,10 @@ function WhitelistProvider({ children }) {
   const addAddressToWhitelist = (address, whitelistId) => {
     api.post('/whitelist/addAddressToWhitelist', { address, whitelistId })
       .then(response => {
+        dispatch({
+          type: 'SET_IS_WHITELISTED',
+          payload: true
+        });
         openAlert({
           severity: SUCCESS,
           message: response.data

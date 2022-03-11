@@ -4,3 +4,6 @@ exports.SUCCESS = 'The operation succeed.';
 exports.NO_DATA = 'No data.';
 exports.TRUE = 'true';
 exports.MINT_IS_FINISHED = 'The mint for that whitelist was already finished.';
+exports.MINT_AMOUNT_FOR_WHITELIST_1 = 1777;
+exports.MINT_AMOUNT_FOR_WHITELIST_2 = 2000;
+exports.REGISTER_FINISHED = 'Register is finished.';
