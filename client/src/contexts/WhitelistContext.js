@@ -41,7 +41,8 @@ const WhitelistContext = createContext({
   getActiveWhitelist: () => Promise.resolve(),
   addAddressToWhitelist: () => Promise.resolve(),
   checkAddressIsWhitelisted: () => Promise.resolve(),
-  getAllWhitelists: () => Promise.resolve()
+  getAllWhitelists: () => Promise.resolve(),
+  setActiveWhitelist: () => Promise.resolve()
 });
 
 //  Provider
@@ -137,6 +138,31 @@ function WhitelistProvider({ children }) {
       });
   };
 
+  //  Make a whitelist active
+  const setActiveWhitelist = (whitelistId) => {
+    api.put(`/whitelist/setActiveWhitelist/${whitelistId}`)
+      .then(response => {
+        dispatch({
+          type: 'SET_ACTIVE_WHITELIST',
+          payload: response.data
+        });
+        openAlert({
+          severity: SUCCESS,
+          message: 'Success!'
+        });
+      })
+      .catch(error => {
+        openAlert({
+          severity: ERROR,
+          message: error.response.data
+        });
+        dispatch({
+          type: 'SET_ACTIVE_WHITELIST',
+          payload: null
+        });
+      });
+  };
+
   useEffect(() => {
     getActiveWhitelist();
   }, []);
@@ -148,7 +174,8 @@ function WhitelistProvider({ children }) {
         getActiveWhitelist,
         addAddressToWhitelist,
         checkAddressIsWhitelisted,
-        getAllWhitelists
+        getAllWhitelists,
+        setActiveWhitelist
       }}
     >
       {children}
