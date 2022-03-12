@@ -22,3 +22,8 @@ exports.adminSignIn = (req, res) => {
     return res.status(500).send(SERVER_ERROR);
   }
 };
+
+exports.getMerkleRoot = (req, res) => {
+  const { whitelistId } = req.params;
+  console.log('# whitelistId: ', whitelistId);
+};

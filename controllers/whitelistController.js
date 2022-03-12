@@ -6,7 +6,8 @@ const {
   TRUE,
   MINT_IS_FINISHED,
   MINT_AMOUNT_FOR_WHITELIST_1,
-  MINT_AMOUNT_FOR_WHITELIST_2
+  MINT_AMOUNT_FOR_WHITELIST_2,
+  REGISTER_FINISHED
 } = require('../utils/messages');
 
 /* --------------------------- For clients ------------------------------ */
@@ -19,18 +20,17 @@ exports.addAddressToWhitelist = async (req, res) => {
     `SELECT COUNT(id_address) AS numberOfAddresses FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
     (error, result) => {
       if (error) {
-        console.log('# error: ', error);
         return res.status(500).send(DB_ERROR);
       }
 
       if (whitelistId == 1) {
-        if (result[0].numberOfAddresses > MINT_AMOUNT_FOR_WHITELIST_1) {
+        if (result[0].numberOfAddresses >= MINT_AMOUNT_FOR_WHITELIST_1) {
           return res.status(406).send(REGISTER_FINISHED);
         }
       }
 
       if (whitelistId == 2) {
-        if (result[0].numberOfAddresses > MINT_AMOUNT_FOR_WHITELIST_2) {
+        if (result[0].numberOfAddresses >= MINT_AMOUNT_FOR_WHITELIST_2) {
           return res.status(406).send(REGISTER_FINISHED);
         }
       }
