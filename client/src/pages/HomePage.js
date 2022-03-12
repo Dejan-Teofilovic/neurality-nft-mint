@@ -7,6 +7,8 @@ import JoinCommunitySection from './JoinCommunitySection';
 import FaqSection from './FaqSection';
 import Footer from '../components/Footer';
 import WhitelistSection from './WhitelistSection';
+import AboutUsSection from './AboutUsSection';
+import MintSection from './MintSection';
 import useWhitelist from '../hooks/useWhitelist';
 import useWallet from '../hooks/useWallet';
 
@@ -25,9 +27,14 @@ export default function HomePage() {
       <HeroSection />
       <ContentStyle>
         <Stack spacing={{ xs: 8, sm: 16, md: 20 }}>
-          {
-            (activeWhitelist && walletConnected) && <WhitelistSection />
-          }
+          <AboutUsSection />
+          <Stack direction="row" justifyContent="center" >
+            {
+              (activeWhitelist && walletConnected) && <WhitelistSection />
+            }
+            <MintSection />
+          </Stack>
+
           <RoadmapSection />
           <WhoWeAreSection />
           <FaqSection />

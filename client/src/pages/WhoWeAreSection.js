@@ -8,7 +8,13 @@ export default function WhoWeAreSection() {
       <Container maxWidth="lg">
         <Grid container columns={5} spacing={{ xs: 2, sm: 5 }} alignItems="center">
           <Grid item xs={5} md={2}>
-            <Typography color={grey[500]} fontSize={{ xs: 24, sm: 36 }} fontWeight={700} textAlign={{ xs: 'center', md: 'right' }} lineHeight={1}>
+            <Typography
+              color={grey[500]}
+              fontSize={{ xs: 24, sm: 36 }}
+              fontWeight={700}
+              textAlign={{ xs: 'center', md: 'right' }}
+              lineHeight={1}
+            >
               Who are we?
             </Typography>
             <Typography fontSize={{ xs: 24, sm: 36 }} fontWeight={700} textAlign={{ xs: 'center', md: 'right' }}>

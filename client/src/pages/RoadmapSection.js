@@ -61,7 +61,7 @@ export default function RoadmapSection() {
           <Grid item md={3}>
             <Typography
               color="white"
-              fontSize={{ xl: 56, lg: 56, md: 48, sm: 32, xs: 24 }}
+              fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
               fontWeight={700}
               textAlign="center"
             >Roadmap</Typography>

@@ -40,7 +40,7 @@ export default function FaqSection() {
     <Box>
       <Container maxWidth="lg">
         <Typography
-          fontSize={{ xl: 56, lg: 56, md: 48, sm: 32, xs: 24 }}
+          fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
           fontWeight={700}
           color="white"
           textAlign="center"
