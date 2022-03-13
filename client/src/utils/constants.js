@@ -508,9 +508,9 @@ export const CONTRACT_ABI = [
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "merkleRoot",
-        "type": "string"
+        "internalType": "bytes32",
+        "name": "_whitelistMerkleRoot",
+        "type": "bytes32"
       }
     ],
     "name": "setWhitelistMerkleRoot",

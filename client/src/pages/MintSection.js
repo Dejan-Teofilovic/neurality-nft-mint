@@ -4,7 +4,7 @@ import { grey } from '@mui/material/colors';
 import { ethers } from "ethers";
 import { useMetaMask } from 'metamask-react';
 import Incrementer from '../components/Incrementor';
-import { CONTRACT_ABI, CHAIN_ID, NFT_PRICE_WH2, NFT_PRICE_WH1, NFT_PRICE_PUBLIC } from '../utils/constants';
+import { CONTRACT_ABI, CHAIN_ID, NFT_PRICE_WH2, NFT_PRICE_WH1, NFT_PRICE_PUBLIC, CONTRACT_ADDRESS } from '../utils/constants';
 import useAlertMessage from '../hooks/useAlertMessage';
 import useWhitelist from '../hooks/useWhitelist';
 import useWallet from '../hooks/useWallet';
@@ -23,24 +23,26 @@ export default function MintSection() {
         if (chainId === CHAIN_ID) {
           const provider = new ethers.providers.Web3Provider(ethereum);
           const signer = provider.getSigner();
-          console.log(process.env.REACT_APP_CONTRACT_ADDRESS);
-          // const contract = new ethers.Contract(process.env.REACT_APP_CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+          console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
+          const contract = new ethers.Contract(process.env.REACT_APP_CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
           if (activeWhitelist) {
             const hexProof = (await api.post('/whitelist/getHexProof', { address: currentAccount, whitelistId: activeWhitelist.id_whitelist })).data;
-            console.log('# hexProof: ', hexProof);
 
-            // //  Whitelist 1
-            // if (activeWhitelist.id_whitelist === 1) {
-            //   transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH1)) });
-            // } else if (activeWhitelist.id_whitelist === 1) {
-            //   //  Whitelist 2
-            //   transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH2)) });
-            // }
+            //  Whitelist 1
+            if (activeWhitelist.id_whitelist === 1) {
+              console.log('# hexProof: ', hexProof);
+              transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH1)) });
+            } else if (activeWhitelist.id_whitelist === 2) {
+              //  Whitelist 2
+              transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH2)) });
+            }
           } else {
-            // transaction = await contract.publicMint({ value: ethers.utils.parseEther(String(NFT_PRICE_PUBLIC)) });
+            transaction = await contract.publicMint({ value: ethers.utils.parseEther(String(NFT_PRICE_PUBLIC)) });
           }
-          // await transaction.wait();
+          await transaction.wait();
+          console.log('# transaction-wait: ', transaction);
+
           openAlert({ severity: 'success', message: 'Minted!' });
         } else {
           openAlert({ severity: 'warning', message: 'Please choose the correct net.' });
@@ -49,7 +51,7 @@ export default function MintSection() {
         openAlert({ severity: 'error', message: 'Ethereum object doesn\'t exist' });
       }
     } catch (error) {
-      openAlert({ severity: 'error', message: error.message ? error.message : 'Transaction is failed.' });
+      openAlert({ severity: 'error', message: error.data ? error.data.message : 'Transaction is failed.' });
     }
   };
 
