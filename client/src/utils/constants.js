@@ -688,3 +688,6 @@ export const CONTRACT_ABI = [
     "type": "function"
   }
 ];
+export const NFT_PRICE_WH1 = "0.07";
+export const NFT_PRICE_WH2 = "0.1";
+export const NFT_PRICE_PUBLIC = "0.15";

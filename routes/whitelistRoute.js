@@ -5,7 +5,8 @@ const {
   getActiveWhitelist,
   checkAddressIsWhitelisted,
   getAllWhitelists,
-  setActiveWhitelist
+  setActiveWhitelist,
+  getHexProof
 } = require('../controllers/whitelistController');
 const authMiddleware = require('../middleware/authMiddleware');
 
@@ -13,6 +14,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.post('/addAddressToWhitelist', addAddressToWhitelist);
 router.get('/getActiveWhitelist', getActiveWhitelist);
 router.post('/checkAddressIsWhitelisted', checkAddressIsWhitelisted);
+router.post('/getHexProof', getHexProof);
 
 //  For admin
 router.get('/getAllWhitelists', authMiddleware, getAllWhitelists);

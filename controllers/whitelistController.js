@@ -1,3 +1,5 @@
+const { MerkleTree } = require('merkletreejs');
+const keccak256 = require('keccak256');
 const db = require('../utils/db');
 const {
   DB_ERROR,
@@ -93,6 +95,34 @@ exports.checkAddressIsWhitelisted = (req, res) => {
       } else {
         return res.status(200).send(false);
       }
+    }
+  );
+};
+
+//  Get hex proof of the address
+exports.getHexProof = (req, res) => {
+  const { address, whitelistId } = req.body;
+  db.query(
+    `SELECT address FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
+    (error, results) => {
+      if (error) {
+        return res.status(500).send(SERVER_ERROR);
+      }
+
+      if (results.length == 0) {
+        return res.status(500).send(NO_DATA);
+      }
+
+      const addresses = results.map(resultItem => resultItem.address);
+      const leafNodes = addresses.map(addr => keccak256(addr));
+
+      const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+      console.log('# address: ', address);
+      console.log('# merkleTree: ', merkleTree.toString());
+
+      const hexProof = merkleTree.getHexProof(keccak256(address));
+
+      return res.status(200).send(hexProof);
     }
   );
 };
