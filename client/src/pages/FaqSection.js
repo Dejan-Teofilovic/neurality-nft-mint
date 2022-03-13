@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { grey } from '@mui/material/colors';
-// import { varFadeInUp, MotionInView, varFadeInDown } from '../animations';
+import { MotionInView, varFadeInDown, varFadeInUp } from '../animations';
 
 
 const data = [
@@ -39,34 +39,38 @@ export default function FaqSection() {
   return (
     <Box>
       <Container maxWidth="lg">
-        <Typography
-          fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
-          fontWeight={700}
-          color="white"
-          textAlign="center"
-        >
-          F.A.Q.
-        </Typography>
+        <MotionInView variants={varFadeInUp}>
+          <Typography
+            fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
+            fontWeight={700}
+            color="white"
+            textAlign="center"
+          >
+            F.A.Q.
+          </Typography>
+        </MotionInView>
 
         <Stack spacing={1} mt={{ xs: 2, sm: 5 }}>
           {
             data.map(dataItem => (
               <Box key={dataItem.question}>
-                <Accordion sx={{ bgcolor: grey[900] }}>
-                  <AccordionSummary
-                    expandIcon={<MuiIcon><Icon icon="bx:bx-chevron-down" /></MuiIcon>}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography
-                      fontSize={{ xs: 14, sm: 18 }}
-                      fontWeight={700}
-                    >{dataItem.question}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18 }}>{dataItem.answer}</Typography>
-                  </AccordionDetails>
-                </Accordion>
+                <MotionInView variants={varFadeInDown}>
+                  <Accordion sx={{ bgcolor: grey[900] }}>
+                    <AccordionSummary
+                      expandIcon={<MuiIcon><Icon icon="bx:bx-chevron-down" /></MuiIcon>}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography
+                        fontSize={{ xs: 14, sm: 18 }}
+                        fontWeight={700}
+                      >{dataItem.question}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18 }}>{dataItem.answer}</Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                </MotionInView>
               </Box>
             ))
           }

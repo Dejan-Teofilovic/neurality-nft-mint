@@ -1,14 +1,13 @@
 import React from 'react';
-import { Box, Button, Container, Stack, Typography } from '@mui/material';
-import { grey } from '@mui/material/colors';
+import { Box, Button, Container, Stack } from '@mui/material';
 import { ethers } from "ethers";
 import { useMetaMask } from 'metamask-react';
-import Incrementer from '../components/Incrementor';
-import { CONTRACT_ABI, CHAIN_ID, NFT_PRICE_WH2, NFT_PRICE_WH1, NFT_PRICE_PUBLIC, CONTRACT_ADDRESS } from '../utils/constants';
+import { CONTRACT_ABI, CHAIN_ID, NFT_PRICE_WH2, NFT_PRICE_WH1, NFT_PRICE_PUBLIC } from '../utils/constants';
 import useAlertMessage from '../hooks/useAlertMessage';
 import useWhitelist from '../hooks/useWhitelist';
 import useWallet from '../hooks/useWallet';
 import api from '../utils/api';
+import { MotionInView, varFadeInUp } from '../animations';
 
 export default function MintSection() {
   const { openAlert } = useAlertMessage();
@@ -59,20 +58,14 @@ export default function MintSection() {
     <Box mt={{ xl: 10, lg: 10, md: 10, sm: 5, xs: 3 }}>
       <Container maxWidth="lg">
         <Stack spacing={{ xl: 4, lg: 4, md: 4, sm: 2, xs: 2 }}>
-          {/* <Typography
-            color={grey[100]}
-            fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
-            fontWeight={700}
-            textTransform="uppercase"
-            textAlign="center"
-          >Mint</Typography> */}
           <Stack direction="row" justifyContent="center" alignItems="center" spacing={5}>
-            {/* <Incrementer available={10} /> */}
-            <Button
-              variant="contained"
-              sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 }, width: 200 }}
-              onClick={mint}
-            >Mint</Button>
+            <MotionInView variants={varFadeInUp}>
+              <Button
+                variant="contained"
+                sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 }, width: 200 }}
+                onClick={mint}
+              >Mint</Button>
+            </MotionInView>
           </Stack>
         </Stack>
       </Container>

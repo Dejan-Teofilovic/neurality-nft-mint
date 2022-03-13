@@ -6,6 +6,7 @@ import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
 import useOffSetTop from '../hooks/useOffSetTop';
 import useWallet from '../hooks/useWallet';
+import { MotionInView, varFadeInLeft, varFadeInRight } from '../animations';
 
 // ----------------------------------------------------------------------
 
@@ -61,34 +62,37 @@ export default function TopNavbar() {
             justifyContent: 'space-between'
           }}
         >
-          <RouterLink to="/">
-            <Box component="img" src="/assets/images/logo.jpg" alt="logo" width={{ xs: 140, sm: 180, md: 220 }} />
-          </RouterLink>
+          <MotionInView variants={varFadeInLeft}>
+            <RouterLink to="/">
+              <Box component="img" src="/assets/images/logo.jpg" alt="logo" width={{ xs: 140, sm: 180, md: 220 }} />
+            </RouterLink>
+          </MotionInView>
+          <MotionInView variants={varFadeInRight}>
 
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
-            <Stack direction="row" justifyContent="center" alignItems="center" sx={{ display: { xs: 'none', sm: 'block' } }}>
-              <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
-                <Icon icon="akar-icons:discord-fill" />
-              </IconButton>
+            <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
+              <Stack direction="row" justifyContent="center" alignItems="center" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
+                  <Icon icon="akar-icons:discord-fill" />
+                </IconButton>
 
-              <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
-                <Icon icon="akar-icons:twitter-fill" />
-              </IconButton>
+                <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
+                  <Icon icon="akar-icons:twitter-fill" />
+                </IconButton>
+              </Stack>
+
+              {
+                walletConnected ? (
+                  <Typography>{currentAccount}</Typography>
+                ) : (
+                  <Button
+                    variant="contained"
+                    sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}
+                    onClick={() => connectWallet()}
+                  >Connect Wallet</Button>
+                )
+              }
             </Stack>
-
-            {
-              walletConnected ? (
-                <Typography>{currentAccount}</Typography>
-              ) : (
-                <Button
-                  variant="contained"
-                  sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}
-                  onClick={() => connectWallet()}
-                >Connect Wallet</Button>
-              )
-            }
-
-          </Stack>
+          </MotionInView>
         </Container>
       </ToolbarStyle>
 

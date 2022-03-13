@@ -27,8 +27,8 @@ export default function HomePage() {
       <HeroSection />
       <ContentStyle>
         <Stack spacing={{ xs: 8, sm: 16, md: 20 }}>
-          {/* {(activeWhitelist && walletConnected) && <WhitelistSection />} */}
-          {walletConnected && <MintSection />}
+          {(activeWhitelist && walletConnected) && <WhitelistSection />}
+          {/* {walletConnected && <MintSection />} */}
           <AboutUsSection />
           <RoadmapSection />
           <WhoWeAreSection />

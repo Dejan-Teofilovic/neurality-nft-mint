@@ -9,7 +9,7 @@ import {
 } from '@mui/lab';
 import { Box, Container, Paper, Stack, Typography, Grid, styled } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { MotionInView, varFadeInUp } from '../animations';
+import { MotionInView, varFadeInUp, varFadeInRight, varFadeInDown } from '../animations';
 
 /* ------------------------------------------------------------------------------------------------------------- */
 
@@ -59,21 +59,24 @@ export default function RoadmapSection() {
       <Container maxWidth="lg">
         <Grid container columns={5} spacing={5}>
           <Grid item md={3}>
-            <Typography
-              color="white"
-              fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
-              fontWeight={700}
-              textAlign="center"
-            >Roadmap</Typography>
-            <Box maxWidth="sm" mx="auto" p={3}>
-              <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18 }} textAlign="center" lineHeight={{ xs: 1.5, sm: 2 }}>
-                This roadmap outlines our goals and where we want to take MekaVerse. We have a lot of ideas and concepts that we are working on. It may evolve over time and hopefully become even better!
-              </Typography>
-            </Box>
             <MotionInView variants={varFadeInUp}>
-              <Timeline>
-                {data.map((item) => (
-                  <TimelineItem key={item.id}>
+              <Typography
+                color="white"
+                fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
+                fontWeight={700}
+                textAlign="center"
+              >Roadmap</Typography>
+              <Box maxWidth="sm" mx="auto" p={3}>
+                <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18 }} textAlign="center" lineHeight={{ xs: 1.5, sm: 2 }}>
+                  This roadmap outlines our goals and where we want to take MekaVerse. We have a lot of ideas and concepts that we are working on. It may evolve over time and hopefully become even better!
+                </Typography>
+              </Box>
+            </MotionInView>
+
+            <Timeline>
+              {data.map((item) => (
+                <MotionInView key={item.id} variants={varFadeInDown}>
+                  <TimelineItem>
                     <TimelineSeparator>
                       <TimelineDot sx={{ color: item.dotColor }} />
                       <TimelineConnector />
@@ -94,18 +97,20 @@ export default function RoadmapSection() {
                       </Paper>
                     </TimelineContent>
                   </TimelineItem>
-                ))}
-              </Timeline>
-            </MotionInView>
+                </MotionInView>
+              ))}
+            </Timeline>
           </Grid>
           <Grid item md={2} sx={{ position: 'relative' }}>
-            <Box
-              component="img"
-              src="/assets/images/landing-human.jpg"
-              alt="roadmap"
-              position="absolute"
-              sx={{ top: 250, display: { xs: 'none', sm: 'none', md: 'block' } }}
-            />
+            <MotionInView variants={varFadeInRight}>
+              <Box
+                component="img"
+                src="/assets/images/landing-human.jpg"
+                alt="roadmap"
+                position="absolute"
+                sx={{ top: 250, display: { xs: 'none', sm: 'none', md: 'block' } }}
+              />
+            </MotionInView>
           </Grid>
         </Grid>
       </Container>
