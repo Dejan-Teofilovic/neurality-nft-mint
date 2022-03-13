@@ -8,4 +8,4 @@ const {
 router.post('/adminSignIn', adminSignIn);
 router.get('/getMerkleRoot/:whitelistId', getMerkleRoot);
 
-module.exports = router;
+module.exports = router;  

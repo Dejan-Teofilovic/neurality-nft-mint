@@ -12,7 +12,6 @@ exports.adminSignIn = (req, res) => {
       { expiresIn: '5 days' },
       (error, token) => {
         if (error) {
-          console.log('# error: ', error);
           return res.status(500).send(SERVER_ERROR);
         }
         return res.status(200).send(token);

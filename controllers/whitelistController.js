@@ -13,53 +13,54 @@ const {
 /* --------------------------- For clients ------------------------------ */
 
 //  Add a address to a whitelist
-exports.addAddressToWhitelist = async (req, res) => {
+exports.addAddressToWhitelist = (req, res) => {
   const { address, whitelistId } = req.body;
 
   db.query(
     `SELECT COUNT(id_address) AS numberOfAddresses FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
     (error, result) => {
+      //  If the number of the addresses that were whitelisted is already full.
       if (error) {
         return res.status(500).send(DB_ERROR);
       }
-
       if (whitelistId == 1) {
-        if (result[0].numberOfAddresses >= MINT_AMOUNT_FOR_WHITELIST_1) {
+        if (result[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_1) {
           return res.status(406).send(REGISTER_FINISHED);
         }
       }
 
       if (whitelistId == 2) {
-        if (result[0].numberOfAddresses >= MINT_AMOUNT_FOR_WHITELIST_2) {
+        if (result[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_2) {
           return res.status(406).send(REGISTER_FINISHED);
         }
       }
-    });
 
-  db.query(
-    `SELECT * FROM whitelisted_addresses WHERE address = '${address}' AND id_whitelist = ${whitelistId}`,
-    (error1, existedAddresses) => {
-      if (error1) {
-        return res.status(500).send(SERVER_ERROR);
-      } else {
-        if (existedAddresses.length > 0) {
-          return res.status(500).send('The address is already whitelisted.');
-        } else {
-          db.query(
-            `INSERT INTO whitelisted_addresses (address, id_whitelist) VALUES ('${address}', ${whitelistId})`,
-            (error2, result) => {
-              if (error2) {
-                console.log('### error2: ', error2);
-                return res.status(500).send(SERVER_ERROR);
-              } else {
+      //  Else.
+      db.query(
+        `SELECT * FROM whitelisted_addresses WHERE address = '${address}' AND id_whitelist = ${whitelistId}`,
+        (error1, existedAddresses) => {
+          if (error1) {
+            return res.status(500).send(SERVER_ERROR);
+          }
+          //  If the address is already listed.
+          if (existedAddresses.length > 0) {
+            return res.status(500).send('The address is already whitelisted.');
+          } else {
+            db.query(
+              `INSERT INTO whitelisted_addresses (address, id_whitelist) VALUES ('${address}', ${whitelistId})`,
+              (error2, result2) => {
+                if (error2) {
+                  return res.status(500).send(SERVER_ERROR);
+                }
                 return res.status(200).send(SUCCESS);
               }
-            }
-          );
+            );
+          }
         }
-      }
-    }
-  );
+      );
+    });
+
+
 };
 
 //  Get active whitelist
