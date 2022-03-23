@@ -5,12 +5,12 @@ import RoadmapSection from './RoadmapSection';
 import WhoWeAreSection from './WhoWeAreSection';
 import JoinCommunitySection from './JoinCommunitySection';
 import FaqSection from './FaqSection';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 import WhitelistSection from './WhitelistSection';
 import AboutUsSection from './AboutUsSection';
 import MintSection from './MintSection';
-import useWhitelist from '../hooks/useWhitelist';
-import useWallet from '../hooks/useWallet';
+import useWhitelist from '../../hooks/useWhitelist';
+import useWallet from '../../hooks/useWallet';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',

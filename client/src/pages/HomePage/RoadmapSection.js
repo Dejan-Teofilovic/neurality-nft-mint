@@ -9,7 +9,7 @@ import {
 } from '@mui/lab';
 import { Box, Container, Paper, Stack, Typography, Grid, styled } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { MotionInView, varFadeInUp, varFadeInRight, varFadeInDown } from '../animations';
+import { MotionInView, varFadeInUp, varFadeInRight, varFadeInDown } from '../../animations';
 
 /* ------------------------------------------------------------------------------------------------------------- */
 

@@ -5,6 +5,8 @@ import AdminLayout from './layouts/AdminLayout';
 import HomePage from './pages/HomePage';
 import SelectWhitelist from './pages/admin/SelectWhitelist';
 import AdminAuthGuard from './guards/AdminAuthGuard';
+import PrivatePage from './pages/PrivatePage';
+import PrivateAuthGuard from './guards/PrivateAuthGuard';
 
 export default function Routes() {
   return useRoutes([
@@ -15,6 +17,10 @@ export default function Routes() {
         {
           path: '/',
           element: <HomePage />
+        },
+        {
+          path: '/:address',
+          element: <PrivateAuthGuard><PrivatePage /></PrivateAuthGuard>
         }
       ]
     },

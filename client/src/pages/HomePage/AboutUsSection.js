@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Stack, Container } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { MotionInView, varFadeInUp, varFadeInDown } from '../animations';
+import { MotionInView, varFadeInUp, varFadeInDown } from '../../animations';
 
 export default function AboutUsSection() {
   return (

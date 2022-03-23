@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton, Typography } from '@mui/material';
+import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton, Typography, Link } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
 import useOffSetTop from '../hooks/useOffSetTop';
@@ -41,7 +41,7 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
 
 export default function TopNavbar() {
   const isOffset = useOffSetTop(100);
-  const { connectWallet, currentAccount, walletConnected } = useWallet();
+  const { connectWallet, currentAccount, walletConnected, tokenId } = useWallet();
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent', height: 'auto' }}>
@@ -81,7 +81,12 @@ export default function TopNavbar() {
               </Stack>
 
               {
-                walletConnected ? (
+                walletConnected ? tokenId ? (
+                  <Link
+                    component={RouterLink}
+                    to={`/${currentAccount}`}
+                  >{currentAccount}</Link>
+                ) : (
                   <Typography>{currentAccount}</Typography>
                 ) : (
                   <Button
@@ -91,6 +96,18 @@ export default function TopNavbar() {
                   >Connect Wallet</Button>
                 )
               }
+
+              {/* {
+                walletConnected ? (
+                  <Typography>{currentAccount}</Typography>
+                ) : (
+                  <Button
+                    variant="contained"
+                    sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}
+                    onClick={() => connectWallet()}
+                  >Connect Wallet</Button>
+                )
+              } */}
             </Stack>
           </MotionInView>
         </Container>

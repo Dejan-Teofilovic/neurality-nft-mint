@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { styled } from '@mui/material/styles';
 import { Box, Container, Typography, Stack, Button } from '@mui/material';
-import { varFadeInUp, varWrapEnter, varFadeInRight } from '../animations';
+import { varFadeInUp, varWrapEnter, varFadeInRight } from '../../animations';
 
 // ----------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
-import { MotionInView, varFadeInLeft, varFadeInRight } from '../animations';
+import { MotionInView, varFadeInLeft, varFadeInRight } from '../../animations';
 
 export default function JoinCommunitySection() {
   return (

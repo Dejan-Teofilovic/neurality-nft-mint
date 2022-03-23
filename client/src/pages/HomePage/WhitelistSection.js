@@ -1,11 +1,11 @@
 import React from 'react';
 import { Stack, Typography, Button, Box, Container } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import useWhitelist from '../hooks/useWhitelist';
-import useWallet from '../hooks/useWallet';
-import useAlertMessage from '../hooks/useAlertMessage';
-import { WARNING } from '../utils/constants';
-import { MotionInView, varFadeInDown, varFadeInUp } from '../animations';
+import useWhitelist from '../../hooks/useWhitelist';
+import useWallet from '../../hooks/useWallet';
+import useAlertMessage from '../../hooks/useAlertMessage';
+import { WARNING } from '../../utils/constants';
+import { MotionInView, varFadeInDown, varFadeInUp } from '../../animations';
 
 export default function WhitelistSection() {
   const { registerAvailableWhitelist, addAddressToWhitelist, isWhitelisted } = useWhitelist();

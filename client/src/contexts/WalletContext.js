@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import { ethers } from "ethers";
 import { useMetaMask } from 'metamask-react';
 import {
   ERROR,
@@ -10,7 +11,8 @@ import {
   BLOCK_EXPLORER_URLS,
   NATIVE_CURRENCY_NAME,
   NATIVE_CURRENCY_SYMBOL,
-  DECIMALS
+  DECIMALS,
+  CONTRACT_ABI
 } from '../utils/constants';
 import { AlertMessageContext } from './AlertMessageContext';
 import { WhitelistContext } from './WhitelistContext';
@@ -20,6 +22,7 @@ import { WhitelistContext } from './WhitelistContext';
 const initialState = {
   walletConnected: false,
   currentAccount: '',
+  tokenId: 0
 };
 
 const handlers = {
@@ -35,6 +38,12 @@ const handlers = {
       currentAccount: action.payload
     };
   },
+  SET_TOKEN_ID: (state, action) => {
+    return {
+      ...state,
+      tokenId: action.payload
+    };
+  }
 };
 
 const reducer = (state, action) =>
@@ -52,6 +61,7 @@ function WalletProvider({ children }) {
   const { openAlert } = useContext(AlertMessageContext);
   const { checkAddressIsWhitelisted } = useContext(WhitelistContext);
   const { connect, account, chainId, ethereum } = useMetaMask();
+
 
   const connectWallet = async () => {
     await connect();
@@ -143,6 +153,20 @@ function WalletProvider({ children }) {
         }
       }
     }
+
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
+      const contract = new ethers.Contract(process.env.REACT_APP_CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+      const { _hex } = await contract.getTokenId();
+
+      dispatch({
+        type: 'SET_TOKEN_ID',
+        payload: Number(_hex)
+      });
+    }
+
   };
 
   useEffect(() => {

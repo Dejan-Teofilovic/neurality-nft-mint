@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { MotionInView, varFadeInLeft, varFadeInRight } from '../animations';
+import { MotionInView, varFadeInLeft, varFadeInRight } from '../../animations';
 
 export default function WhoWeAreSection() {
   return (
