@@ -19,7 +19,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function HomePage() {
-  const { activeWhitelist } = useWhitelist();
+  const { registerAvailableWhitelist, mintAvailableWhitelist } = useWhitelist();
   const { walletConnected } = useWallet();
 
   return (
@@ -27,8 +27,8 @@ export default function HomePage() {
       <HeroSection />
       <ContentStyle>
         <Stack spacing={{ xs: 8, sm: 16, md: 20 }}>
-          {/* {(activeWhitelist && walletConnected) && <WhitelistSection />} */}
-          {walletConnected && <MintSection />}
+          {(walletConnected && registerAvailableWhitelist) && <WhitelistSection />}
+          {(walletConnected && mintAvailableWhitelist) && <MintSection />}
           <AboutUsSection />
           <RoadmapSection />
           <WhoWeAreSection />

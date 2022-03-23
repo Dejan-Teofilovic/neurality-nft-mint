@@ -8,13 +8,13 @@ import { WARNING } from '../utils/constants';
 import { MotionInView, varFadeInDown, varFadeInUp } from '../animations';
 
 export default function WhitelistSection() {
-  const { activeWhitelist, addAddressToWhitelist, isWhitelisted } = useWhitelist();
+  const { registerAvailableWhitelist, addAddressToWhitelist, isWhitelisted } = useWhitelist();
   const { walletConnected, currentAccount } = useWallet();
   const { openAlert } = useAlertMessage();
 
   const registerIntoWhitelist = () => {
     if (walletConnected) {
-      addAddressToWhitelist(currentAccount, activeWhitelist.id_whitelist);
+      addAddressToWhitelist(currentAccount, registerAvailableWhitelist.id_whitelist);
     } else {
       openAlert({
         severity: WARNING,
@@ -46,7 +46,7 @@ export default function WhitelistSection() {
                 <Typography textAlign="center">You're whitelisted.</Typography>
               ) : (
                 <Stack direction="row" justifyContent="center" alignItems="center" spacing={5}>
-                  <Typography>To be registered in {activeWhitelist.name}: </Typography>
+                  <Typography>To be registered in {registerAvailableWhitelist.name}: </Typography>
                   <Button
                     variant="contained"
                     sx={{ borderRadius: 0, fontSize: { xs: 12, sm: 16, md: 20 } }}

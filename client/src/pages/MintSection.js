@@ -11,7 +11,7 @@ import { MotionInView, varFadeInUp } from '../animations';
 
 export default function MintSection() {
   const { openAlert } = useAlertMessage();
-  const { activeWhitelist } = useWhitelist();
+  const { mintAvailableWhitelist } = useWhitelist();
   const { currentAccount } = useWallet();
   const { chainId, ethereum } = useMetaMask();
 
@@ -25,14 +25,14 @@ export default function MintSection() {
           console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
           const contract = new ethers.Contract(process.env.REACT_APP_CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
-          if (activeWhitelist) {
-            const hexProof = (await api.post('/whitelist/getHexProof', { address: currentAccount, whitelistId: activeWhitelist.id_whitelist })).data;
+          if (mintAvailableWhitelist) {
+            const hexProof = (await api.post('/whitelist/getHexProof', { address: currentAccount, whitelistId: mintAvailableWhitelist.id_whitelist })).data;
 
             //  Whitelist 1
-            if (activeWhitelist.id_whitelist === 1) {
+            if (mintAvailableWhitelist.id_whitelist === 1) {
               console.log('# hexProof: ', hexProof);
               transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH1)) });
-            } else if (activeWhitelist.id_whitelist === 2) {
+            } else if (mintAvailableWhitelist.id_whitelist === 2) {
               //  Whitelist 2
               transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH2)) });
             }
