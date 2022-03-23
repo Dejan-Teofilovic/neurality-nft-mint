@@ -6,16 +6,23 @@ import { AlertMessageContext } from './AlertMessageContext';
 // ----------------------------------------------------------------------
 
 const initialState = {
-  activeWhitelist: null,
+  registerAvailableWhitelist: null,
+  mintAvailableWhitelist: null,
   isWhitelisted: false,
   whitelists: []
 };
 
 const handlers = {
-  SET_ACTIVE_WHITELIST: (state, action) => {
+  SET_REGISTER_AVAILBLE_WHITELIST: (state, action) => {
     return {
       ...state,
-      activeWhitelist: action.payload,
+      registerAvailableWhitelist: action.payload,
+    };
+  },
+  SET_MINT_AVAILBLE_WHITELIST: (state, action) => {
+    return {
+      ...state,
+      mintAvailableWhitelist: action.payload,
     };
   },
   SET_IS_WHITELISTED: (state, action) => {
@@ -38,11 +45,13 @@ const reducer = (state, action) =>
 //  Context
 const WhitelistContext = createContext({
   ...initialState,
-  getActiveWhitelist: () => Promise.resolve(),
+  getRegisterAvailableWhitelist: () => Promise.resolve(),
+  getMintAvailableWhitelist: () => Promise.resolve(),
   addAddressToWhitelist: () => Promise.resolve(),
   checkAddressIsWhitelisted: () => Promise.resolve(),
   getAllWhitelists: () => Promise.resolve(),
-  setActiveWhitelist: () => Promise.resolve()
+  activeRegisterAvailableByWhitelistId: () => Promise.resolve(),
+  activeMintAvailableByWhitelistId: () => Promise.resolve()
 });
 
 //  Provider
@@ -50,18 +59,18 @@ function WhitelistProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { openAlert } = useContext(AlertMessageContext);
 
-  //  Get active whitelist
-  const getActiveWhitelist = () => {
-    api.get('/whitelist/getActiveWhitelist')
+  //  Get whitelist that is registerable
+  const getRegisterAvailableWhitelist = () => {
+    api.get('/whitelist/getRegisterAvailableWhitelist')
       .then(response => {
         if (response.data.length > 0) {
           dispatch({
-            type: 'SET_ACTIVE_WHITELIST',
+            type: 'SET_REGISTER_AVAILBLE_WHITELIST',
             payload: response.data[0]
           });
         } else {
           dispatch({
-            type: 'SET_ACTIVE_WHITELIST',
+            type: 'SET_REGISTER_AVAILBLE_WHITELIST',
             payload: null
           });
         }
@@ -72,7 +81,35 @@ function WhitelistProvider({ children }) {
           message: error.response.data
         });
         dispatch({
-          type: 'SET_ACTIVE_WHITELIST',
+          type: 'SET_REGISTER_AVAILBLE_WHITELIST',
+          payload: null
+        });
+      });
+  };
+
+  //  Get whitelist that is mintable
+  const getMintAvailableWhitelist = () => {
+    api.get('/whitelist/getMintAvailableWhitelist')
+      .then(response => {
+        if (response.data.length > 0) {
+          dispatch({
+            type: 'SET_MINT_AVAILBLE_WHITELIST',
+            payload: response.data[0]
+          });
+        } else {
+          dispatch({
+            type: 'SET_MINT_AVAILBLE_WHITELIST',
+            payload: null
+          });
+        }
+      })
+      .catch(error => {
+        openAlert({
+          severity: ERROR,
+          message: error.response.data
+        });
+        dispatch({
+          type: 'SET_MINT_AVAILBLE_WHITELIST',
           payload: null
         });
       });
@@ -92,6 +129,12 @@ function WhitelistProvider({ children }) {
         });
       })
       .catch(error => {
+        if (error.response.status === 406 || error.response.status === 404) {
+          dispatch({
+            type: 'SET_REGISTER_AVAILBLE_WHITELIST',
+            payload: null
+          });
+        }
         openAlert({
           severity: ERROR,
           message: error.response.data
@@ -141,12 +184,18 @@ function WhitelistProvider({ children }) {
       });
   };
 
-  //  Make a whitelist active
-  const setActiveWhitelist = (whitelistId) => {
-    api.put(`/whitelist/setActiveWhitelist/${whitelistId}`)
+  //  Make a whitelist registerable
+  const activeRegisterAvailableByWhitelistId = (whitelistId = null) => {
+    let uri = '/whitelist/activeRegisterAvailableByWhitelistId';
+
+    if (whitelistId) {
+      uri += `/${whitelistId}`;
+    }
+
+    api.put(uri)
       .then(response => {
         dispatch({
-          type: 'SET_ACTIVE_WHITELIST',
+          type: 'SET_REGISTER_AVAILBLE_WHITELIST',
           payload: response.data
         });
         openAlert({
@@ -160,25 +209,59 @@ function WhitelistProvider({ children }) {
           message: error.response.data
         });
         dispatch({
-          type: 'SET_ACTIVE_WHITELIST',
+          type: 'SET_REGISTER_AVAILBLE_WHITELIST',
+          payload: null
+        });
+      });
+  };
+
+  //  Make a whitelist mintable
+  const activeMintAvailableByWhitelistId = (whitelistId = null) => {
+    let uri = '/whitelist/activeMintAvailableByWhitelistId';
+
+    if (whitelistId) {
+      uri += `/${whitelistId}`;
+    }
+
+    api.put(uri)
+      .then(response => {
+        dispatch({
+          type: 'SET_MINT_AVAILBLE_WHITELIST',
+          payload: response.data
+        });
+        openAlert({
+          severity: SUCCESS,
+          message: 'Success!'
+        });
+      })
+      .catch(error => {
+        openAlert({
+          severity: ERROR,
+          message: error.response.data
+        });
+        dispatch({
+          type: 'SET_MINT_AVAILBLE_WHITELIST',
           payload: null
         });
       });
   };
 
   useEffect(() => {
-    getActiveWhitelist();
+    getRegisterAvailableWhitelist();
+    getMintAvailableWhitelist();
   }, []);
 
   return (
     <WhitelistContext.Provider
       value={{
         ...state,
-        getActiveWhitelist,
+        getRegisterAvailableWhitelist,
+        getMintAvailableWhitelist,
         addAddressToWhitelist,
         checkAddressIsWhitelisted,
         getAllWhitelists,
-        setActiveWhitelist
+        activeRegisterAvailableByWhitelistId,
+        activeMintAvailableByWhitelistId
       }}
     >
       {children}

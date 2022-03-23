@@ -18,7 +18,7 @@ router.post('/getHexProof', getHexProof);
 
 //  For admin
 router.get('/getAllWhitelists', authMiddleware, getAllWhitelists);
-router.put('/activeMintAvailableByWhitelistId/:whitelistId', authMiddleware, activeMintAvailableByWhitelistId);
 router.put('/activeRegisterAvailableByWhitelistId/:whitelistId', authMiddleware, activeRegisterAvailableByWhitelistId);
+router.put('/activeMintAvailableByWhitelistId/:whitelistId', authMiddleware, activeMintAvailableByWhitelistId);
 
 module.exports = router;

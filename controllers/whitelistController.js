@@ -174,6 +174,50 @@ exports.getHexProof = (req, res) => {
 };
 
 /* --------------------------- For admins ------------------------------ */
+
+//  Set the value of 'register_available' of a whitelist as 'true'
+exports.activeRegisterAvailableByWhitelistId = (req, res) => {
+  const { whitelistId } = req.params;
+
+  if (whitelistId) {
+    //  Check that the whitelist of that whitelistId is full
+    db.query(
+      `SELECT COUNT(id_address) AS numberOfAddresses FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
+      (error, results) => {
+        if (error) {
+          return res.status(500).send(DB_ERROR);
+        }
+        if (whitelistId == 1) {
+          if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_1) {
+            return res.status(406).send(REGISTER_FINISHED);
+          }
+        }
+        if (whitelistId == 2) {
+          if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_2) {
+            return res.status(406).send(REGISTER_FINISHED);
+          }
+        }
+      }
+    );
+
+    //  If the whitelist isn't full yet, set its register_available as 'true'
+    db.query(`UPDATE whitelists SET register_available = 'true' WHERE id_whitelist = ${whitelistId}`, (error3, results) => {
+      if (error3) {
+        return res.status(500).send(DB_ERROR);
+      }
+      results[0].register_available = 'true';
+      return res.status(200).send(results[0]);
+    });
+  } else {
+    db.query("UPDATE whitelists SET mint_available = 'false'", (error, results) => {
+      if (error) {
+        return res.status(500).send(DB_ERROR);
+      }
+      return res.status(200).send(SUCCESS);
+    });
+  }
+};
+
 //  Set the value of 'mint_available' of a whitelist as 'true' or set its value of all whitelists as 'false'
 exports.activeMintAvailableByWhitelistId = (req, res) => {
   const { whitelistId } = req.params;
@@ -199,39 +243,6 @@ exports.activeMintAvailableByWhitelistId = (req, res) => {
   });
 };
 
-//  Set the value of 'register_available' of a whitelist as 'true'
-exports.activeRegisterAvailableByWhitelistId = (req, res) => {
-  const { whitelistId } = req.params;
-
-  //  Check that the whitelist of that whitelistId is full
-  db.query(
-    `SELECT COUNT(id_address) AS numberOfAddresses FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
-    (error, results) => {
-      if (error) {
-        return res.status(500).send(DB_ERROR);
-      }
-      if (whitelistId == 1) {
-        if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_1) {
-          return res.status(406).send(REGISTER_FINISHED);
-        }
-      }
-      if (whitelistId == 2) {
-        if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_2) {
-          return res.status(406).send(REGISTER_FINISHED);
-        }
-      }
-    }
-  );
-
-  //  If the whitelist isn't full yet, set its register_available as 'true'
-  db.query(`UPDATE whitelists SET register_available = 'true' WHERE id_whitelist = ${whitelistId}`, (error3, results) => {
-    if (error3) {
-      return res.status(500).send(DB_ERROR);
-    }
-    results[0].register_available = 'true';
-    return res.status(200).send(results[0]);
-  });
-};
 
 //  Get all whitelists
 exports.getAllWhitelists = (req, res) => {
