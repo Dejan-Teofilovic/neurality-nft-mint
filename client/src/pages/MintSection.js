@@ -22,10 +22,10 @@ export default function MintSection() {
         if (chainId === CHAIN_ID) {
           const provider = new ethers.providers.Web3Provider(ethereum);
           const signer = provider.getSigner();
-          console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
-          const contract = new ethers.Contract(process.env.REACT_APP_CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+          console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', '0xE54652C3642B93C3f174e5ad61fc3446918aE2A5');
+          const contract = new ethers.Contract('0xE54652C3642B93C3f174e5ad61fc3446918aE2A5', CONTRACT_ABI, signer);
 
-          if (mintAvailableWhitelist) {
+          if (mintAvailableWhitelist?.id_whitelist < 3) {
             const hexProof = (await api.post('/whitelist/getHexProof', { address: currentAccount, whitelistId: mintAvailableWhitelist.id_whitelist })).data;
 
             //  Whitelist 1

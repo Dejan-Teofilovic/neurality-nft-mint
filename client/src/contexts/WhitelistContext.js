@@ -63,17 +63,10 @@ function WhitelistProvider({ children }) {
   const getRegisterAvailableWhitelist = () => {
     api.get('/whitelist/getRegisterAvailableWhitelist')
       .then(response => {
-        if (response.data.length > 0) {
-          dispatch({
-            type: 'SET_REGISTER_AVAILBLE_WHITELIST',
-            payload: response.data[0]
-          });
-        } else {
-          dispatch({
-            type: 'SET_REGISTER_AVAILBLE_WHITELIST',
-            payload: null
-          });
-        }
+        dispatch({
+          type: 'SET_REGISTER_AVAILBLE_WHITELIST',
+          payload: response.data
+        });
       })
       .catch(error => {
         openAlert({
@@ -91,17 +84,10 @@ function WhitelistProvider({ children }) {
   const getMintAvailableWhitelist = () => {
     api.get('/whitelist/getMintAvailableWhitelist')
       .then(response => {
-        if (response.data.length > 0) {
-          dispatch({
-            type: 'SET_MINT_AVAILBLE_WHITELIST',
-            payload: response.data[0]
-          });
-        } else {
-          dispatch({
-            type: 'SET_MINT_AVAILBLE_WHITELIST',
-            payload: null
-          });
-        }
+        dispatch({
+          type: 'SET_MINT_AVAILBLE_WHITELIST',
+          payload: response.data
+        });
       })
       .catch(error => {
         openAlert({
@@ -188,7 +174,6 @@ function WhitelistProvider({ children }) {
   const activeRegisterAvailableByWhitelistId = (whitelistId) => {
     api.put(`/whitelist/activeRegisterAvailableByWhitelistId/${whitelistId}`)
       .then(response => {
-        console.log('# response.data: ', response);
         dispatch({
           type: 'SET_REGISTER_AVAILBLE_WHITELIST',
           payload: response.data

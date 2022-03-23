@@ -21,7 +21,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
 export default function HomePage() {
   const { registerAvailableWhitelist, mintAvailableWhitelist } = useWhitelist();
   const { walletConnected } = useWallet();
-
   return (
     <>
       <HeroSection />
