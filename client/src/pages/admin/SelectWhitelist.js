@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, FormControlLabel, Radio, RadioGroup, Stack, Button } from '@mui/material';
+import { Card, CardContent, FormControlLabel, Radio, RadioGroup, Stack, Button, Typography } from '@mui/material';
 import useWhitelist from '../../hooks/useWhitelist';
 import useAdminAuth from '../../hooks/useAdminAuth';
 import useAlertMessage from '../../hooks/useAlertMessage';
-import { TRUE, WARNING } from '../../utils/constants';
+import { TRUE } from '../../utils/constants';
 
 export default function SelectWhitelist() {
-  const { getAllWhitelists, whitelists, setActiveWhitelist, activeWhitelist } = useWhitelist();
+  const {
+    getAllWhitelists,
+    whitelists,
+    activeRegisterAvailableByWhitelistId,
+    activeMintAvailableByWhitelistId,
+    registerAvailableWhitelist,
+    mintAvailableWhitelist
+  } = useWhitelist();
   const { adminSignOut, accessToken } = useAdminAuth();
   const { openAlert } = useAlertMessage();
 
-  const [whitelistId, setWhitelistId] = useState(0);
+  const [registerAvailableWhitelistId, setRegisterAvailableWhitelistId] = useState(0);
+  const [mintAvailableWhitelistId, setMintAvailableWhitelistId] = useState(0);
 
-  const handleSelectWhitelist = (newValue) => {
-    setWhitelistId(Number(newValue));
+  const handleActiveRegister = (newValue) => {
+    const whitelistId = Number(newValue);
+    activeRegisterAvailableByWhitelistId(whitelistId);
   };
 
-  const handleSetActiveWhitelist = () => {
-    if (whitelistId) {
-      setActiveWhitelist(whitelistId);
-    } else {
-      openAlert({
-        severity: WARNING,
-        message: 'Please select a whitelist.'
-      });
-    }
+  const handleActiveMint = (newValue) => {
+    const whitelistId = Number(newValue);
+    activeMintAvailableByWhitelistId(whitelistId);
   };
 
   useEffect(() => {
@@ -34,25 +37,28 @@ export default function SelectWhitelist() {
   }, [accessToken]);
 
   useEffect(() => {
-    if (activeWhitelist) {
-      setWhitelistId(activeWhitelist.id_whitelist);
+    if (registerAvailableWhitelist) {
+      setRegisterAvailableWhitelistId(registerAvailableWhitelist.id_whitelist);
+    } else {
+      setRegisterAvailableWhitelistId(0);
     }
-  }, [activeWhitelist?.id_whitelist]);
+  }, [registerAvailableWhitelist?.id_whitelist]);
+
+  useEffect(() => {
+    if (mintAvailableWhitelist) {
+      setMintAvailableWhitelistId(mintAvailableWhitelist.id_whitelist);
+    } else {
+      setMintAvailableWhitelistId(0);
+    }
+  }, [mintAvailableWhitelist?.id_whitelist]);
 
   return (
     <Stack justifyContent="center" height="100vh">
       <Stack direction="row" justifyContent="center">
         <Card>
-          <CardHeader
-            title="Set a whitelist to be registered."
-            titleTypographyProps={{
-              fontSize: 36,
-              fontWeight: 700,
-              color: 'white'
-            }}
-          />
           <CardContent>
             <Stack spacing={3}>
+              <Typography color="white" fontSize={17} fontWeight={500} textAlign="center">Active whitelist</Typography>
               {
                 whitelists.length > 0 && (
                   <RadioGroup
@@ -61,8 +67,41 @@ export default function SelectWhitelist() {
                     sx={{
                       justifyContent: 'center'
                     }}
-                    onChange={(e, value) => handleSelectWhitelist(value)}
-                    value={whitelistId}
+                    onChange={(e, value) => handleActiveRegister(value)}
+                    value={registerAvailableWhitelistId}
+                  >
+                    {
+                      whitelists.map(whitelist => (
+                        whitelist.id_whitelist < 3 && <FormControlLabel
+                          key={whitelist.id_whitelist}
+                          control={<Radio />}
+                          label={whitelist.name}
+                          value={whitelist.id_whitelist}
+                          disabled={whitelist.mint_available === TRUE}
+                        />
+                      ))
+                    }
+                    <FormControlLabel
+                      control={<Radio />}
+                      label="None"
+                      value={0}
+                    />
+                  </RadioGroup>
+                )
+              }
+
+              <Typography color="white" fontSize={17} fontWeight={500} textAlign="center">Active mint</Typography>
+
+              {
+                whitelists.length > 0 && (
+                  <RadioGroup
+                    row
+                    name="row-radio-buttons-group"
+                    sx={{
+                      justifyContent: 'center'
+                    }}
+                    onChange={(e, value) => handleActiveMint(value)}
+                    value={mintAvailableWhitelistId}
                   >
                     {
                       whitelists.map(whitelist => (
@@ -71,17 +110,20 @@ export default function SelectWhitelist() {
                           control={<Radio />}
                           label={whitelist.name}
                           value={whitelist.id_whitelist}
-                          disabled={whitelist.end === TRUE}
                         />
                       ))
                     }
+                    <FormControlLabel
+                      control={<Radio />}
+                      label="None"
+                      value={0}
+                    />
                   </RadioGroup>
                 )
               }
 
-              <Stack direction="row" justifyContent="space-between" alignItems="center">
-                <Button variant="outlined" onClick={adminSignOut}>Sign out</Button>
-                <Button variant="contained" onClick={handleSetActiveWhitelist}>Active</Button>
+              <Stack direction="row" justifyContent="center" alignItems="center">
+                <Button variant="contained" onClick={adminSignOut}>Sign out</Button>
               </Stack>
             </Stack>
           </CardContent>

@@ -144,7 +144,7 @@ function WhitelistProvider({ children }) {
 
   //  Check the current account is whitelisted
   const checkAddressIsWhitelisted = (address) => {
-    api.post('/whitelist', { address })
+    api.post('/whitelist/checkAddressIsWhitelisted', { address })
       .then(response => {
         dispatch({
           type: 'SET_IS_WHITELISTED',
@@ -185,15 +185,10 @@ function WhitelistProvider({ children }) {
   };
 
   //  Make a whitelist registerable
-  const activeRegisterAvailableByWhitelistId = (whitelistId = null) => {
-    let uri = '/whitelist/activeRegisterAvailableByWhitelistId';
-
-    if (whitelistId) {
-      uri += `/${whitelistId}`;
-    }
-
-    api.put(uri)
+  const activeRegisterAvailableByWhitelistId = (whitelistId) => {
+    api.put(`/whitelist/activeRegisterAvailableByWhitelistId/${whitelistId}`)
       .then(response => {
+        console.log('# response.data: ', response);
         dispatch({
           type: 'SET_REGISTER_AVAILBLE_WHITELIST',
           payload: response.data
@@ -208,22 +203,18 @@ function WhitelistProvider({ children }) {
           severity: ERROR,
           message: error.response.data
         });
-        dispatch({
-          type: 'SET_REGISTER_AVAILBLE_WHITELIST',
-          payload: null
-        });
+        if (error.response.status === 406) {
+          dispatch({
+            type: 'SET_REGISTER_AVAILBLE_WHITELIST',
+            payload: null
+          });
+        }
       });
   };
 
   //  Make a whitelist mintable
-  const activeMintAvailableByWhitelistId = (whitelistId = null) => {
-    let uri = '/whitelist/activeMintAvailableByWhitelistId';
-
-    if (whitelistId) {
-      uri += `/${whitelistId}`;
-    }
-
-    api.put(uri)
+  const activeMintAvailableByWhitelistId = (whitelistId) => {
+    api.put(`/whitelist/activeMintAvailableByWhitelistId/${whitelistId}`)
       .then(response => {
         dispatch({
           type: 'SET_MINT_AVAILBLE_WHITELIST',
@@ -238,10 +229,6 @@ function WhitelistProvider({ children }) {
         openAlert({
           severity: ERROR,
           message: error.response.data
-        });
-        dispatch({
-          type: 'SET_MINT_AVAILBLE_WHITELIST',
-          payload: null
         });
       });
   };

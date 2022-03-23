@@ -179,43 +179,48 @@ exports.getHexProof = (req, res) => {
 exports.activeRegisterAvailableByWhitelistId = (req, res) => {
   const { whitelistId } = req.params;
 
-  if (whitelistId) {
-    //  Check that the whitelist of that whitelistId is full
-    db.query(
-      `SELECT COUNT(id_address) AS numberOfAddresses FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
-      (error, results) => {
-        if (error) {
+  db.query("UPDATE whitelists SET register_available = 'false' WHERE id_whitelist != 3", (error) => {
+    if (error) {
+      return res.status(500).send(DB_ERROR);
+    }
+    if (whitelistId > 0) {
+      //  Check that the whitelist of that whitelistId is full
+      db.query(
+        `SELECT COUNT(id_address) AS numberOfAddresses FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`,
+        (error1, results) => {
+          if (error1) {
+            return res.status(500).send(DB_ERROR);
+          }
+          if (whitelistId == 1) {
+            if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_1) {
+              return res.status(406).send(REGISTER_FINISHED);
+            }
+          }
+          if (whitelistId == 2) {
+            if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_2) {
+              return res.status(406).send(REGISTER_FINISHED);
+            }
+          }
+        }
+      );
+
+      //  If the whitelist isn't full yet, set its register_available as 'true'
+      db.query(`UPDATE whitelists SET register_available = 'true' WHERE id_whitelist = ${whitelistId}`, (error3) => {
+        if (error3) {
           return res.status(500).send(DB_ERROR);
         }
-        if (whitelistId == 1) {
-          if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_1) {
-            return res.status(406).send(REGISTER_FINISHED);
+        db.query(`SELECT * FROM whitelists WHERE id_whitelist = ${whitelistId}`, (error4, results) => {
+          if (error4) {
+            return res.status(500).send(DB_ERROR);
           }
-        }
-        if (whitelistId == 2) {
-          if (results[0].numberOfAddresses == MINT_AMOUNT_FOR_WHITELIST_2) {
-            return res.status(406).send(REGISTER_FINISHED);
-          }
-        }
-      }
-    );
-
-    //  If the whitelist isn't full yet, set its register_available as 'true'
-    db.query(`UPDATE whitelists SET register_available = 'true' WHERE id_whitelist = ${whitelistId}`, (error3, results) => {
-      if (error3) {
-        return res.status(500).send(DB_ERROR);
-      }
-      results[0].register_available = 'true';
-      return res.status(200).send(results[0]);
-    });
-  } else {
-    db.query("UPDATE whitelists SET mint_available = 'false'", (error, results) => {
-      if (error) {
-        return res.status(500).send(DB_ERROR);
-      }
-      return res.status(200).send(SUCCESS);
-    });
-  }
+          console.log('# results[0]: ', results[0]);
+          return res.status(200).send(results[0]);
+        });
+      });
+    } else {
+      return res.status(200).send(null);
+    }
+  });
 };
 
 //  Set the value of 'mint_available' of a whitelist as 'true' or set its value of all whitelists as 'false'
@@ -226,15 +231,20 @@ exports.activeMintAvailableByWhitelistId = (req, res) => {
     if (error2) {
       return res.status(500).send(DB_ERROR);
     }
-    if (whitelistId) {
+    if (whitelistId > 0) {
       db.query(
         `UPDATE whitelists SET mint_available = 'true', register_available = 'false' WHERE id_whitelist = ${whitelistId}`,
-        (error3, results) => {
+        (error3) => {
           if (error3) {
             return res.status(500).send(DB_ERROR);
           }
-          results[0].mint_available = 'true';
-          return res.status(200).send(results[0]);
+          db.query(`SELECT * FROM whitelists WHERE id_whitelist = ${whitelistId}`, (error4, results) => {
+            if (error4) {
+              return res.status(500).send(DB_ERROR);
+            }
+            console.log('# results[0]: ', results[0]);
+            return res.status(200).send(results[0]);
+          });
         }
       );
     } else {

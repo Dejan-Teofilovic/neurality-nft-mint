@@ -20,7 +20,6 @@ import { WhitelistContext } from './WhitelistContext';
 const initialState = {
   walletConnected: false,
   currentAccount: '',
-  mintAmount: 1
 };
 
 const handlers = {
@@ -36,12 +35,6 @@ const handlers = {
       currentAccount: action.payload
     };
   },
-  SET_MINT_AMOUNT: (state, action) => {
-    return {
-      ...state,
-      mintAmount: action.payload
-    };
-  }
 };
 
 const reducer = (state, action) =>
@@ -50,7 +43,6 @@ const reducer = (state, action) =>
 //  Context
 const WalletContext = createContext({
   ...initialState,
-  setMintAmount: () => Promise.resolve(),
   connectWallet: () => Promise.resolve()
 });
 
@@ -153,13 +145,6 @@ function WalletProvider({ children }) {
     }
   };
 
-  const setMintAmount = (newMintAmount) => {
-    dispatch({
-      type: 'SET_MINT_AMOUNT',
-      payload: newMintAmount
-    });
-  };
-
   useEffect(() => {
     connectWallet();
   }, []);
@@ -168,7 +153,6 @@ function WalletProvider({ children }) {
     <WalletContext.Provider
       value={{
         ...state,
-        setMintAmount,
         connectWallet
       }}
     >

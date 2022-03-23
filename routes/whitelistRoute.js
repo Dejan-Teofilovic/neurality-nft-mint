@@ -3,8 +3,11 @@ const router = express.Router();
 const {
   addAddressToWhitelist,
   getRegisterAvailableWhitelist,
+  getMintAvailableWhitelist,
   checkAddressIsWhitelisted,
   getAllWhitelists,
+  activeRegisterAvailableByWhitelistId,
+  activeMintAvailableByWhitelistId,
   getHexProof
 } = require('../controllers/whitelistController');
 const authMiddleware = require('../middleware/authMiddleware');
