@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
   addAddressToWhitelist,
-  getActiveWhitelist,
+  getRegisterAvailableWhitelist,
   checkAddressIsWhitelisted,
   getAllWhitelists,
   setActiveWhitelist,
@@ -12,7 +12,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 //  For user
 router.post('/addAddressToWhitelist', addAddressToWhitelist);
-router.get('/getActiveWhitelist', getActiveWhitelist);
+router.get('/getRegisterAvailableWhitelist', getRegisterAvailableWhitelist);
 router.post('/checkAddressIsWhitelisted', checkAddressIsWhitelisted);
 router.post('/getHexProof', getHexProof);
 

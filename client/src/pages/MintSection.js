@@ -37,6 +37,7 @@ export default function MintSection() {
               transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH2)) });
             }
           } else {
+            console.log('# public');
             transaction = await contract.publicMint({ value: ethers.utils.parseEther(String(NFT_PRICE_PUBLIC)) });
           }
           await transaction.wait();

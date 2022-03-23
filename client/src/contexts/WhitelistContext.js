@@ -101,8 +101,7 @@ function WhitelistProvider({ children }) {
 
   //  Check the current account is whitelisted
   const checkAddressIsWhitelisted = (address) => {
-    const whitelistId = state.activeWhitelist.id_whitelist;
-    api.post('/whitelist/checkAddressIsWhitelisted', { address, whitelistId })
+    api.post('/whitelist', { address })
       .then(response => {
         dispatch({
           type: 'SET_IS_WHITELISTED',
