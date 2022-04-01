@@ -150,20 +150,6 @@ exports.getRegisterAvailableWhitelist = async (req, res) => {
     console.log(error);
     return res.status(500).send(DB_ERROR);
   }
-
-
-  // db.query(
-  //   "SELECT * FROM whitelists WHERE register_available = 'true'",
-  //   (error, results) => {
-  //     if (error) {
-  //       return res.status(500).send(DB_ERROR);
-  //     }
-  //     if (results.length == 0) {
-  //       return res.status(204).send(null);
-  //     }
-  //     return res.status(200).send(results[0]);
-  //   }
-  // );
 };
 
 //  Get a whitelist that is available on mint
@@ -181,19 +167,6 @@ exports.getMintAvailableWhitelist = async (req, res) => {
     console.log(error);
     return res.status(500).send(DB_ERROR);
   }
-
-  // db.query(
-  //   "SELECT * FROM whitelists WHERE mint_available = 'true'",
-  //   (error, results) => {
-  //     if (error) {
-  //       return res.status(500).send(DB_ERROR);
-  //     }
-  //     if (results.length == 0) {
-  //       return res.status(204).send(null);
-  //     }
-  //     return res.status(200).send(results[0]);
-  //   }
-  // );
 };
 
 //  Check the address is whitelisted

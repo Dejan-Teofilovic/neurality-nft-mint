@@ -23,6 +23,7 @@ export const DECIMALS = 18;
 
 export const SWITCH_ERROR_CODE = 4902;
 export const TRUE = 'true';
+export const CONTRACT_ADDRESS = '0x93C4C71e1A0715fd176DCD4e3Cc0A3E28eea9F4b'
 export const CONTRACT_ABI = [
   {
     "inputs": [

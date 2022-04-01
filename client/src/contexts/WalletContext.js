@@ -12,7 +12,8 @@ import {
   NATIVE_CURRENCY_NAME,
   NATIVE_CURRENCY_SYMBOL,
   DECIMALS,
-  CONTRACT_ABI
+  CONTRACT_ABI,
+  CONTRACT_ADDRESS
 } from '../utils/constants';
 import { AlertMessageContext } from './AlertMessageContext';
 import { WhitelistContext } from './WhitelistContext';
@@ -157,8 +158,8 @@ function WalletProvider({ children }) {
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
-      console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
-      const contract = new ethers.Contract(process.env.REACT_APP_CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+      // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
       const { _hex } = await contract.getTokenId();
 
       dispatch({

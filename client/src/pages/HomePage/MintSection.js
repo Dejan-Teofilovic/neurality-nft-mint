@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Container, Stack } from '@mui/material';
 import { ethers } from "ethers";
 import { useMetaMask } from 'metamask-react';
-import { CONTRACT_ABI, CHAIN_ID, NFT_PRICE_WH2, NFT_PRICE_WH1, NFT_PRICE_PUBLIC } from '../../utils/constants';
+import { CONTRACT_ABI, CHAIN_ID, NFT_PRICE_WH2, NFT_PRICE_WH1, NFT_PRICE_PUBLIC, CONTRACT_ADDRESS } from '../../utils/constants';
 import api from '../../utils/api';
 import useAlertMessage from '../../hooks/useAlertMessage';
 import useWhitelist from '../../hooks/useWhitelist';
@@ -23,7 +23,7 @@ export default function MintSection() {
           const provider = new ethers.providers.Web3Provider(ethereum);
           const signer = provider.getSigner();
           console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
-          const contract = new ethers.Contract(process.env.REACT_APP_CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+          const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
           if (mintAvailableWhitelist?.id_whitelist < 3) {
             const hexProof = (await api.post('/whitelist/getHexProof', { address: currentAccount, whitelistId: mintAvailableWhitelist.id_whitelist })).data;

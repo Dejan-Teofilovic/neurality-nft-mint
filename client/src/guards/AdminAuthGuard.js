@@ -7,7 +7,6 @@ export default function AdminAuthGuard({ children }) {
   const { accessToken } = useAdminAuth();
   const { pathname } = useLocation();
   const [requestedLocation, setRequestedLocation] = useState(null);
-
   if (!accessToken) {
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname);
