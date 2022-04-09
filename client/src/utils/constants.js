@@ -4,7 +4,7 @@ export const ERROR = 'error';
 export const WARNING = 'warning';
 
 //  Mumbai
-export const CHAIN_ID = '0x13881';
+export const CHAIN_ID = 80001;
 export const CHAIN_NAME = 'Mumbai Testnet';
 export const RPC_URLS = ['https://rpc-mumbai.maticvigil.com'];
 export const BLOCK_EXPLORER_URLS = ['https://polygonscan.com/'];
@@ -23,7 +23,7 @@ export const DECIMALS = 18;
 
 export const SWITCH_ERROR_CODE = 4902;
 export const TRUE = 'true';
-export const CONTRACT_ADDRESS = '0x93C4C71e1A0715fd176DCD4e3Cc0A3E28eea9F4b'
+export const CONTRACT_ADDRESS = '0xEf7eCE0A6208135dCef0f155FcdD9163F6517540';
 export const CONTRACT_ABI = [
   {
     "inputs": [
@@ -835,3 +835,5 @@ export const CONTRACT_ABI = [
 export const NFT_PRICE_WH1 = "0.07";
 export const NFT_PRICE_WH2 = "0.1";
 export const NFT_PRICE_PUBLIC = "0.15";
+
+export const NO_ETHEREUM_OBJECT = /No Ethereum provider was found on window.ethereum/;

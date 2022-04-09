@@ -19,7 +19,7 @@ export default function Routes() {
           element: <HomePage />
         },
         {
-          path: '/:address',
+          path: '/user/:address',
           element: <PrivateAuthGuard><PrivatePage /></PrivateAuthGuard>
         }
       ]

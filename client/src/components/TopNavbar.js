@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton, Typography, Link } from '@mui/material';
+import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton, Typography, Menu, MenuItem } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
+import { useNavigate } from 'react-router-dom';
 import useOffSetTop from '../hooks/useOffSetTop';
 import useWallet from '../hooks/useWallet';
 import { MotionInView, varFadeInLeft, varFadeInRight } from '../animations';
@@ -40,8 +41,29 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function TopNavbar() {
+  const navigate = useNavigate();
   const isOffset = useOffSetTop(100);
-  const { connectWallet, currentAccount, walletConnected, tokenId } = useWallet();
+  const { connectWallet, currentAccount, walletConnected, tokenId, disconnectWallet } = useWallet();
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleDisconnect = () => {
+    disconnectWallet();
+    setAnchorElUser(null);
+    navigate('/');
+  };
+
+  const handlePrivatePage = () => {
+    navigate(`/user/${currentAccount}`);
+    setAnchorElUser(null);
+  };
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent', height: 'auto' }}>
@@ -79,16 +101,44 @@ export default function TopNavbar() {
                   <Icon icon="akar-icons:twitter-fill" />
                 </IconButton>
               </Stack>
-
               {
-                walletConnected ? tokenId ? (
-                  <Link
-                    component={RouterLink}
-                    to={`/${currentAccount}`}
-                  >{currentAccount}</Link>
-                ) : (
-                  <Typography>{currentAccount}</Typography>
-                ) : (
+                walletConnected ? (<>
+                  <Button
+                    variant="contained"
+                    sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}
+                    onClick={handleOpenUserMenu}
+                  >
+                    {`${currentAccount.slice(0, 8)}...${currentAccount.slice(-4)}`}
+                  </Button>
+                  <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem onClick={handleDisconnect}>
+                      <Typography textAlign="center" color="white">Disconnect</Typography>
+                    </MenuItem>
+                    {console.log('# tokenId => ', tokenId)}
+                    {
+                      tokenId > 0 && (
+                        <MenuItem onClick={handlePrivatePage}>
+                          <Typography textAlign="center" color="white">Private Page</Typography>
+                        </MenuItem>
+                      )
+                    }
+                  </Menu>
+                </>) : (
                   <Button
                     variant="contained"
                     sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}
@@ -96,18 +146,6 @@ export default function TopNavbar() {
                   >Connect Wallet</Button>
                 )
               }
-
-              {/* {
-                walletConnected ? (
-                  <Typography>{currentAccount}</Typography>
-                ) : (
-                  <Button
-                    variant="contained"
-                    sx={{ borderRadius: 0, fontSize: { xs: 10, sm: 14, md: 18 } }}
-                    onClick={() => connectWallet()}
-                  >Connect Wallet</Button>
-                )
-              } */}
             </Stack>
           </MotionInView>
         </Container>

@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import { ethers } from "ethers";
-import { useMetaMask } from 'metamask-react';
+import { useWeb3React } from '@web3-react/core';
 import {
   ERROR,
-  SUCCESS,
   CHAIN_ID,
   SWITCH_ERROR_CODE,
   CHAIN_NAME,
@@ -17,6 +16,8 @@ import {
 } from '../utils/constants';
 import { AlertMessageContext } from './AlertMessageContext';
 import { WhitelistContext } from './WhitelistContext';
+import { isNoEthereumObject } from '../utils/errors';
+import { injected } from '../utils/connectors';
 
 // ----------------------------------------------------------------------
 
@@ -53,7 +54,8 @@ const reducer = (state, action) =>
 //  Context
 const WalletContext = createContext({
   ...initialState,
-  connectWallet: () => Promise.resolve()
+  connectWallet: () => Promise.resolve(),
+  disconnectWallet: () => Promise.resolve()
 });
 
 //  Provider
@@ -61,39 +63,45 @@ function WalletProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { openAlert } = useContext(AlertMessageContext);
   const { checkAddressIsWhitelisted } = useContext(WhitelistContext);
-  const { connect, account, chainId, ethereum } = useMetaMask();
-
+  const { active, activate, deactivate, account, chainId } = useWeb3React();
 
   const connectWallet = async () => {
-    await connect();
-    //  If the current network is the expected one.
-    if (chainId === CHAIN_ID) {
-      dispatch({
-        type: 'SET_CURRENT_ACCOUNT',
-        payload: account
-      });
+    await activate(injected, (error) => {
+      if (isNoEthereumObject(error))
+        window.open("https://metamask.io/download.html");
+    });
+  };
 
-      dispatch({
-        type: 'SET_WALLET_CONNECTED',
-        payload: true
-      });
+  const disconnectWallet = () => {
+    deactivate();
+    dispatch({
+      type: 'SET_CURRENT_ACCOUNT',
+      payload: ''
+    });
 
-      checkAddressIsWhitelisted(account);
+    dispatch({
+      type: 'SET_WALLET_CONNECTED',
+      payload: false
+    });
+  };
 
-      openAlert({
-        severity: SUCCESS,
-        message: 'Connected.'
-      });
+  const getTokenId = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+    const { _hex } = await contract.getTokenId();
 
-    } else {
-      if (ethereum) {
-        //  If the current network isn't the expected one, switch it to the expected one.
-        try {
-          await ethereum.request({
-            method: 'wallet_switchEthereumChain',
-            params: [{ chainId: CHAIN_ID }],
-          });
+    dispatch({
+      type: 'SET_TOKEN_ID',
+      payload: Number(_hex)
+    });
+  };
 
+  useEffect(() => {
+    (async () => {
+      if (chainId) {
+        if (chainId === CHAIN_ID) {
           dispatch({
             type: 'SET_CURRENT_ACCOUNT',
             payload: account
@@ -105,80 +113,106 @@ function WalletProvider({ children }) {
           });
 
           checkAddressIsWhitelisted(account);
-        } catch (switchError) {
-          //  If the expected network isn't existed in the metamask.
-          if (switchError.code === SWITCH_ERROR_CODE) {
-            await ethereum.request({
-              method: 'wallet_addEthereumChain',
-              params: [
-                {
-                  chainId: CHAIN_ID,
-                  chainName: CHAIN_NAME,
-                  rpcUrls: RPC_URLS,
-                  blockExplorerUrls: BLOCK_EXPLORER_URLS,
-                  nativeCurrency: {
-                    name: NATIVE_CURRENCY_NAME,
-                    symbol: NATIVE_CURRENCY_SYMBOL, // 2-6 characters length
-                    decimals: DECIMALS,
-                  }
-                },
-              ],
-            });
-            dispatch({
-              type: 'SET_CURRENT_ACCOUNT',
-              payload: account
-            });
 
-            dispatch({
-              type: 'SET_WALLET_CONNECTED',
-              payload: true
-            });
+        } else {
+          if (window.ethereum) {
+            //  If the current network isn't the expected one, switch it to the expected one.
+            try {
+              await window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: `0x${CHAIN_ID.toString(16)}` }],
+              });
 
-            checkAddressIsWhitelisted(account);
+              dispatch({
+                type: 'SET_CURRENT_ACCOUNT',
+                payload: account
+              });
+
+              dispatch({
+                type: 'SET_WALLET_CONNECTED',
+                payload: true
+              });
+
+              checkAddressIsWhitelisted(account);
+            } catch (switchError) {
+              //  If the expected network isn't existed in the metamask.
+              if (switchError.code === SWITCH_ERROR_CODE) {
+                await window.ethereum.request({
+                  method: 'wallet_addEthereumChain',
+                  params: [
+                    {
+                      chainId: `0x${CHAIN_ID.toString(16)}`,
+                      chainName: CHAIN_NAME,
+                      rpcUrls: RPC_URLS,
+                      blockExplorerUrls: BLOCK_EXPLORER_URLS,
+                      nativeCurrency: {
+                        name: NATIVE_CURRENCY_NAME,
+                        symbol: NATIVE_CURRENCY_SYMBOL, // 2-6 characters length
+                        decimals: DECIMALS,
+                      }
+                    },
+                  ],
+                });
+                dispatch({
+                  type: 'SET_CURRENT_ACCOUNT',
+                  payload: account
+                });
+
+                dispatch({
+                  type: 'SET_WALLET_CONNECTED',
+                  payload: true
+                });
+
+                checkAddressIsWhitelisted(account);
+              } else {
+                dispatch({
+                  type: 'SET_CURRENT_ACCOUNT',
+                  payload: ''
+                });
+
+                dispatch({
+                  type: 'SET_WALLET_CONNECTED',
+                  payload: false
+                });
+
+                openAlert({
+                  severity: ERROR,
+                  message: 'Wallet connection failed.'
+                });
+              }
+            }
           } else {
-            dispatch({
-              type: 'SET_CURRENT_ACCOUNT',
-              payload: ''
-            });
-
-            dispatch({
-              type: 'SET_WALLET_CONNECTED',
-              payload: false
-            });
-
-            openAlert({
-              severity: ERROR,
-              message: 'Wallet connection failed.'
-            });
+            openAlert({ severity: 'error', message: 'Please install Metamask.' });
+            return;
           }
         }
+        getTokenId();
       }
-    }
-
-    if (ethereum) {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
-      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-      const { _hex } = await contract.getTokenId();
-
-      dispatch({
-        type: 'SET_TOKEN_ID',
-        payload: Number(_hex)
-      });
-    }
-
-  };
+    })();
+  }, [chainId]);
 
   useEffect(() => {
-    connectWallet();
+    if (active) {
+      dispatch({
+        type: 'SET_CURRENT_ACCOUNT',
+        payload: account
+      });
+
+      dispatch({
+        type: 'SET_WALLET_CONNECTED',
+        payload: true
+      });
+
+      getTokenId();
+    }
   }, []);
 
   return (
     <WalletContext.Provider
       value={{
         ...state,
-        connectWallet
+        connectWallet,
+        disconnectWallet
       }}
     >
       {children}
