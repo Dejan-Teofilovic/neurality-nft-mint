@@ -44,7 +44,13 @@ const HeroImgStyle = styled(motion.img)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     right: '8%',
     width: 'auto',
-    height: '48vh'
+    height: '64vh'
+  },
+
+  [theme.breakpoints.up('md')]: {
+    right: '8%',
+    width: 'auto',
+    height: '64vh'
   }
 }));
 
@@ -53,8 +59,13 @@ const HeroImgStyle = styled(motion.img)(({ theme }) => ({
 export default function HeroSection() {
   return (
     <>
-      <RootStyle initial="initial" animate="animate" variants={varWrapEnter}>
-        <HeroImgStyle alt="hero" src="/assets/images/landing-boxes.jpg" variants={varFadeInUp} />
+      <RootStyle 
+        initial="initial" 
+        animate="animate" 
+        variants={varWrapEnter}
+        sx={{ mt: { xl: 0, lg: 0, md: 0, sm: 14, xs: 8 } }}
+      >
+        <HeroImgStyle alt="hero" src="/assets/images/landing-boxes.png" variants={varFadeInUp} />
         <Container maxWidth="lg">
           <ContentStyle>
             <motion.div variants={varFadeInRight}>

@@ -73,7 +73,7 @@ export default function TopNavbar() {
           ...(isOffset && {
             bgcolor: 'background.default',
             height: { md: APP_BAR_DESKTOP - 16 }
-          }),
+          })
         }}
       >
         <Container
