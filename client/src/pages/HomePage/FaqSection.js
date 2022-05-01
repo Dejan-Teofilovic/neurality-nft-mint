@@ -16,22 +16,25 @@ import { MotionInView, varFadeInDown, varFadeInUp } from '../../animations';
 
 const data = [
   {
-    question: 'Is EverETH on Binance Smart Chain or Ethereum network?',
-    answer: 'The smaller fees always win. EverETH is on Binance Smart Chain.'
+    question: 'How to invest?',
+    answer: 'If you want to be part of the party, the one and only way is to get one of our NFTs. Without an NFT, you can\'t register.'
   },
   {
-    question: 'When I will recieve my Ethereum dividends?',
+    question: 'How do you make the connection between the DeFi and the CeFi?',
+    answer: 'It is very simple. An NFT gives you access to the registration form with our partner broker on a MAM account provided for this purpose.'
+  },
+  {
+    question: 'What is a MAM account?',
     answer:
-      'Our unique reward system is triggered by volume (buy + sell activity to cover gas fees).Payouts to holders may not occur every 30 minutes if the trading volume is low. When this is the case, the amount of rewarded Ethereum each holder will receive does not decrease. However, will accrue over a longer period of time until it is suitable for a payout to trigger (usually between 1-2 hours).'
+      'Multi-account trading. Individual investors advance capital and our robot makes trades that are replicated for all accounts in the pool. The profits are in proportion to the investment of each. Each investor keeps control of their funds and withdraws when they wish. We have no access to your funds.'
   },
   {
-    question: 'Where to check how much I earned?',
-    answer:
-      'Our developers created the EverETH dashboard where you can check your earnings live. Go to : https://EverETH.app Connect your wallet, or paste your wallet address. However there is another way to check your Ethereum balance: You simply need to add the custom token Binance-Peg Ethereum BEP20 to your wallet.'
+    question: 'Can I deposit in BTC on your broker?',
+    answer: 'Yes, you can. You can also use the fiat if you wish.'
   },
   {
-    question: 'How do I get touch with the team?',
-    answer: 'The best way to contact the team is through our Telegram. We are always available to help you!'
+    question: 'What are the advantages of owning our NFTs?',
+    answer: 'Our collections are limited and will become increasingly inaccessible. The value of the NFT may explode as the community grows.'
   }
 ];
 

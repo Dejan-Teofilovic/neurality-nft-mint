@@ -18,14 +18,14 @@ export default function JoinCommunitySection() {
                 >Join the community</Typography>
               </MotionInView>
               <MotionInView variants={varFadeInRight}>
-                <Typography
+                {/* <Typography
                   color="white"
                   fontSize={{ xs: 14, sm: 18 }}
                   lineHeight={{ xs: 1.5, sm: 2 }}
                   textAlign={{ xs: 'center', md: 'left' }}
                 >
                   MekaVerse Discord already has over 200,000 members! If you want to join the #MEKAGANG it’s here. Join us to get the news as soon as possible and follow our latest announcements.
-                </Typography>
+                </Typography> */}
               </MotionInView>
               <MotionInView variants={varFadeInLeft}>
                 <Stack direction="row" justifyContent={{ xs: 'center', md: 'start' }}>

@@ -23,12 +23,12 @@ export default function Footer() {
                     <Box component="img" src="/assets/images/logo.jpg" alt="logo" width="60%" />
                   </Stack>
                   <Typography color={grey[400]} fontSize={18} textAlign={{ xs: 'center', md: 'left' }}>
-                    8,888 unique mekas who need drivers.
+                    7,777 unique mekas who need drivers.
                   </Typography>
                 </Box>
                 <Box>
                   <Typography color={grey[600]} textAlign={{ xs: 'center', md: 'left' }}>
-                    ©2022 Neurality. All rights reserved.
+                    ©{new Date().getFullYear()} Neurality. All rights reserved.
                   </Typography>
                 </Box>
               </Stack>
