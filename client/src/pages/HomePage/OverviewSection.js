@@ -3,6 +3,7 @@ import {
   Box,
   Card,
   CardHeader,
+  CardMedia,
   Container,
   Grid,
   List,
@@ -40,7 +41,7 @@ export default function OverviewSection() {
 
         <Stack direction="row" justifyContent="center" mt={3}>
           <MotionInView variants={varFadeInUp}>
-            <Box component="img" src="/assets/images/overview.png" alt="" width={500} />
+            <Box component="img" src="/assets/images/overview.jpg" alt="" width={500} />
           </MotionInView>
         </Stack>
 
