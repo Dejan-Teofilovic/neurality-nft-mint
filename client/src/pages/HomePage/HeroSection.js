@@ -69,14 +69,14 @@ export default function HeroSection() {
         <Container maxWidth="lg">
           <ContentStyle>
             <motion.div variants={varFadeInRight}>
-              <Typography variant="h1" sx={{ color: 'primary.main' }} textTransform="uppercase">
-                Neurality
+              <Typography variant="h1" sx={{ color: 'white' }}>
+                NFTs like No Others
               </Typography>
             </motion.div>
 
             <motion.div variants={varFadeInRight}>
-              <Typography sx={{ color: 'common.white' }} fontSize={20} textTransform="uppercase">
-                Plug and Play
+              <Typography sx={{ color: 'common.white' }} fontSize={20}>
+                A Smart mix between DeFi and CeFi
               </Typography>
             </motion.div>
 

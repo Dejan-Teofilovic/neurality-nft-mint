@@ -16,38 +16,38 @@ import { MotionInView, varFadeInUp, varFadeInRight, varFadeInDown } from '../../
 const data = [
   {
     id: '2022',
-    title: 'Q1',
+    title: 'Q3',
     description: 'Building community. Launch of NFT1 and access to trading bot through MAM',
     dotColor: '#d02560'
   },
   {
     id: '2022',
-    title: 'Q2',
-    description: 'Development of Unity 3D Metaverse V1 and ICO/IDO landing page with smart contracts and music creation',
-    dotColor: 'white'
-  },
-  {
-    id: '2022',
-    title: 'Q3',
-    description: 'Launch of the Metaverse V1 and ICO/ICO, Development of Metaverse V2, Staking, In-app purchase and Play-to-earn functionalities.',
-    dotColor: 'white'
-  },
-  {
-    id: '2022',
     title: 'Q4',
-    description: 'Launch of Metaverse V2, Development of Metaverse V3. Complete Open-world immersion where users can buy anything, lands, properties, yachts, cars, even champagne with tokens or NFTs. The ability for the users to resell and get more ROI on their tokens.',
+    description: 'Development of Unity 3D Play-to-earn car racing game and ICO/IDO landing page with smart contracts and music creation',
     dotColor: 'white'
   },
   {
     id: '2023',
-    title: 'Q1-Q2',
-    description: 'Development of Metaverse V3',
+    title: 'Q1',
+    description: 'Launch of the Play-to-earn car racing game and ICO/ICO, Development of Metaverse V1, Staking, In-app purchase and Play-to-earn functionalities.',
+    dotColor: 'white'
+  },
+  {
+    id: '2023',
+    title: 'Q2',
+    description: 'Launch of Metaverse V1, Development of Metaverse V2. Complete Open-world immersion where users can buy anything, lands, properties, yachts, cars, even champagne with tokens or NFTs. The ability for the users to resell and get more ROI on their tokens.',
     dotColor: 'white'
   },
   {
     id: '2023',
     title: 'Q3-Q4',
-    description: 'Launch of Metaverse V3',
+    description: 'Development of Metaverse V2',
+    dotColor: 'white'
+  },
+  {
+    id: '2024',
+    title: 'Q1-Q2',
+    description: 'Launch of Metaverse V2',
     dotColor: 'white'
   }
 ];

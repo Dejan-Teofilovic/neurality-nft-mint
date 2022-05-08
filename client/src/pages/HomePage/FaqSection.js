@@ -13,7 +13,6 @@ import { Icon } from '@iconify/react';
 import { grey } from '@mui/material/colors';
 import { MotionInView, varFadeInDown, varFadeInUp } from '../../animations';
 
-
 const data = [
   {
     question: 'How to invest?',

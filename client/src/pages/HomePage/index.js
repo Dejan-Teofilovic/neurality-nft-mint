@@ -11,6 +11,7 @@ import AboutUsSection from './AboutUsSection';
 import MintSection from './MintSection';
 import useWhitelist from '../../hooks/useWhitelist';
 import useWallet from '../../hooks/useWallet';
+import OverviewSection from './OverviewSection';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
@@ -29,6 +30,7 @@ export default function HomePage() {
           {(walletConnected && registerAvailableWhitelist) && <WhitelistSection />}
           {(walletConnected && mintAvailableWhitelist) && <MintSection />}
           <AboutUsSection />
+          <OverviewSection />
           <RoadmapSection />
           <WhoWeAreSection />
           <FaqSection />

@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container, Stack, IconButton, Typography, Menu, MenuItem } from '@mui/material';
+import {
+  Box,
+  Button,
+  AppBar,
+  Toolbar,
+  Container,
+  Stack,
+  IconButton,
+  Typography,
+  Menu,
+  MenuItem,
+  Link
+} from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
@@ -93,13 +105,17 @@ export default function TopNavbar() {
 
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
               <Stack direction="row" justifyContent="center" alignItems="center" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
-                  <Icon icon="akar-icons:discord-fill" />
-                </IconButton>
+                <Link target="_blank" href="https://t.me/NeuralityProject">
+                  <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
+                    <Icon icon="bxl:telegram" />
+                  </IconButton>
+                </Link>
 
-                <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
-                  <Icon icon="akar-icons:twitter-fill" />
-                </IconButton>
+                <Link target="_blank" href="https://twitter.com/NeuralityPro">
+                  <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
+                    <Icon icon="akar-icons:twitter-fill" />
+                  </IconButton>
+                </Link>
               </Stack>
               {
                 walletConnected ? (<>
