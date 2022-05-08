@@ -71,6 +71,7 @@ export default function RoadmapSection() {
                 fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
                 fontWeight={700}
                 textAlign="center"
+                textTransform="uppercase"
               >Roadmap</Typography>
             </MotionInView>
 

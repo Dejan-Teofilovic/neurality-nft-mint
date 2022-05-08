@@ -46,7 +46,7 @@ export default function WhoWeAreSection() {
           <Grid container spacing={4} mt={2}>
             {
               DATA_OF_MEMBERS.map(dataItem => (
-                <Grid item xs={12} sm={6} md={3} key={dataItem.id}>
+                <Grid item xs={12} sm={6} md={4} key={dataItem.id}>
                   <Card sx={{ height: '100%' }}>
                     <CardMedia component="img" alt={dataItem.name} image={dataItem.image} />
                     <CardContent>

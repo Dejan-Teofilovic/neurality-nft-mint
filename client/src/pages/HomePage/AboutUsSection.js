@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Stack, Container, Card, CardMedia } from '@mui/material';
+import { Box, Typography, Stack, Container } from '@mui/material';
 import { grey, purple } from '@mui/material/colors';
 import { MotionInView, varFadeInUp, varFadeInDown } from '../../animations';
 
@@ -27,11 +27,7 @@ export default function AboutUsSection() {
             </Typography>
             <Stack direction="row" justifyContent="center" mt={3}>
               <MotionInView variants={varFadeInDown}>
-                <Card>
-                  <CardMedia>
-                    <Box component="img" src="/assets/images/roadmap.jpg" alt="" width={500} />
-                  </CardMedia>
-                </Card>
+                <Box component="img" src="/assets/images/chart.png" alt="" width={500} />
               </MotionInView>
             </Stack>
             <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>
