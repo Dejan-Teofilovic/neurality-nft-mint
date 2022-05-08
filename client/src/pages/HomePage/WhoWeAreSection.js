@@ -32,16 +32,6 @@ export default function WhoWeAreSection() {
     <Box>
       <Container maxWidth="lg">
         <Box>
-          <MotionInView variants={varFadeInDown}>
-            <Typography
-              color={grey[100]}
-              fontSize={{ xl: 18, lg: 18, md: 14, sm: 10, xs: 10 }}
-              fontWeight={700}
-              textTransform="uppercase"
-              textAlign="center"
-            >Who are we?</Typography>
-          </MotionInView>
-
           <MotionInView variants={varFadeInUp}>
             <Typography
               color={grey[100]}

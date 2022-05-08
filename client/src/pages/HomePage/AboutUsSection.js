@@ -11,16 +11,6 @@ export default function AboutUsSection() {
           <MotionInView variants={varFadeInUp}>
             <Typography
               color={grey[100]}
-              fontSize={{ xl: 18, lg: 18, md: 14, sm: 10, xs: 10 }}
-              fontWeight={700}
-              textTransform="uppercase"
-              textAlign="center"
-            >We are what we build</Typography>
-          </MotionInView>
-
-          <MotionInView variants={varFadeInUp}>
-            <Typography
-              color={grey[100]}
               fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
               fontWeight={700}
               textTransform="uppercase"

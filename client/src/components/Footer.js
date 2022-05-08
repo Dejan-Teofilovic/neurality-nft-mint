@@ -90,11 +90,11 @@ const CONTACT_INFOS = [
     content: '160 Kemp House, London EC1V 2NX, UK',
     icon: 'fa6-solid:location-dot'
   },
-  {
-    id: 2,
-    content: '+123 456 7890',
-    icon: 'bxs:phone'
-  },
+  // {
+  //   id: 2,
+  //   content: '+123 456 7890',
+  //   icon: 'bxs:phone'
+  // },
   {
     id: 3,
     content: 'info@neuralityproject.com',
