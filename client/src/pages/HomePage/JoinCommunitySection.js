@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Link, Stack, Typography } from '@mui/material';
 import { MotionInView, varFadeInLeft, varFadeInRight } from '../../animations';
 
 export default function JoinCommunitySection() {
@@ -28,9 +28,25 @@ export default function JoinCommunitySection() {
                 </Typography> */}
               </MotionInView>
               <MotionInView variants={varFadeInLeft}>
-                <Stack direction="row" justifyContent={{ xs: 'center', md: 'start' }}>
-                  <Button variant="contained" sx={{ borderRadius: 0, fontSize: { xs: 14, sm: 18 }, py: 1, px: 3 }}>
-                    Join our Discord
+                <Stack direction="row" spacing={2} justifyContent={{ xs: 'center', md: 'start' }}>
+                  <Button
+                    component={Link}
+                    variant="contained"
+                    sx={{ borderRadius: 0, fontSize: { xs: 14, sm: 18 }, py: 1, px: 3 }}
+                    href="https://t.me/NeuralityProject"
+                    target="_blank"
+                  >
+                    Join our Telegram
+                  </Button>
+
+                  <Button
+                    component={Link}
+                    variant="contained"
+                    sx={{ borderRadius: 0, fontSize: { xs: 14, sm: 18 }, py: 1, px: 3 }}
+                    href="https://twitter.com/NeuralityPro"
+                    target="_blank"
+                  >
+                    Join our Twitter
                   </Button>
                 </Stack>
               </MotionInView>

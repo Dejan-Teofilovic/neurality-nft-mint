@@ -98,7 +98,7 @@ export default function TopNavbar() {
         >
           <MotionInView variants={varFadeInLeft}>
             <RouterLink to="/">
-              <Box component="img" src="/assets/images/logo.jpg" alt="logo" width={{ xs: 140, sm: 180, md: 220 }} />
+              <Box component="img" src="/assets/images/logo.png" alt="logo" width={{ xs: 140, sm: 180, md: 220 }} />
             </RouterLink>
           </MotionInView>
           <MotionInView variants={varFadeInRight}>
