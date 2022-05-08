@@ -7,18 +7,6 @@ export default function AboutUsSection() {
   return (
     <Box mt={{ xl: 10, lg: 10, md: 10, sm: 5, xs: 3 }}>
       <Container maxWidth="lg">
-        <Box>
-          <MotionInView variants={varFadeInUp}>
-            <Typography
-              color={grey[100]}
-              fontSize={{ xl: 42, lg: 42, md: 36, sm: 32, xs: 24 }}
-              fontWeight={700}
-              textTransform="uppercase"
-              textAlign="center"
-            >About Us</Typography>
-          </MotionInView>
-        </Box>
-
         <MotionInView variants={varFadeInUp}>
           <Stack mt={5} spacing={3}>
             <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>

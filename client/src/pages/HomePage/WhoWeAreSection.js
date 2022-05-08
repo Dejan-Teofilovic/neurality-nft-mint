@@ -9,14 +9,14 @@ const DATA_OF_MEMBERS = [
     name: 'Sid',
     position: 'Algotrader',
     description: 'Behind the pseudonym "Sid" is the algotrader of the Neurality algorithm. He’s got a CFA (Chartered Financial Analyst) and a FRM (Financial Risk Management) graduation. He’s passionate about algotrading and quant strategies and he’s got a 11 years experience as a trader and more importantly a 5 years experience as an algotrader with a renowned algotrading company. He is also very interested in DeFi and cryptocurrencies. Thanks to his expertise and work we can offer you such a service today.',
-    image: '/assets/images/sid.jpg'
+    image: '/assets/images/sid.png'
   },
   {
     id: 2,
     name: 'Pirate',
     position: 'Founder (CEO)',
     description: 'Behind the pseudonym "Pirate" is Founder (CEO). He has several years of experience in algotrading tests, he is also passionate about DeFi and crypto-currencies. He is the one who writes the lines you are reading and is responsible for all the artistic direction of the project (NFT, visuals, music etc), as well as the marketing, copywriting, social networks part. He is the brain behind many of the ideas and initiatives on the Neurality project.',
-    image: '/assets/images/pirate.jpg'
+    image: '/assets/images/pirate.png'
   },
   {
     id: 3,
