@@ -13,7 +13,7 @@ import { MotionInView, varFadeInUp, varFadeInRight, varFadeInDown } from '../../
 
 /* ------------------------------------------------------------------------------------------------------------- */
 
-const data = [
+const DATA = [
   {
     id: '2022',
     title: 'Q3',
@@ -75,7 +75,7 @@ export default function RoadmapSection() {
             </MotionInView>
 
             <Timeline>
-              {data.map((item, index) => (
+              {DATA.map((item, index) => (
                 <MotionInView key={index} variants={varFadeInDown}>
                   <TimelineItem>
                     <TimelineSeparator>
