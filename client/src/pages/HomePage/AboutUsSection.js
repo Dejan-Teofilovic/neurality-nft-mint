@@ -25,11 +25,13 @@ export default function AboutUsSection() {
               Neurality is the end result of 5 long years of evolution of an algotrading strategy that trades the XAU/USD known as Gold pair. Situated between the scalper and the intraday, NEYX is coded behind an IA (Intelligent Automation) and embeds a hundred decisional strategies behind a Neural Network/Deep Learning prediction system coupled with a smart grid calculation system, without using martingale or any dangerous strategies. Neurality is able to adapt itself to market fluctuations by diminishing the impact of Gold volatility. In short, it's a cash machine.
               The numbers never lie, see for yourself with this 6 months real account statement, a low drawdown for a total profit of <Typography component="span" fontSize={{ xs: 14, sm: 18, md: 20 }} fontWeight={800}>$76927</Typography>.
             </Typography>
-            <Stack direction="row" justifyContent="center" mt={3}>
-              <MotionInView variants={varFadeInDown}>
-                <Box component="img" src="/assets/images/chart.png" alt="" width={500} />
-              </MotionInView>
-            </Stack>
+
+            <MotionInView variants={varFadeInDown}>
+              <Stack direction="row" justifyContent="center">
+                <Box component="img" src="/assets/images/chart.png" alt="" width="90%" />
+              </Stack>
+            </MotionInView>
+
             <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>
               Usually, this kind of high-end service is aimed at large investors (minimum 50k per client). WE WANT TO CHANGE THE GAME! Because we want as many people as possible to be able to invest, we chose to use a MAM (Multi Account Manager) with our partner broker. We have created a win-win system for everyone, investors receive their profits in proportion to their investment automatically. We take NO commission on performances, whereas hedge funds and proprietary trading companies would reduce your profit by 40-60%. Thus your money stays safe on our regulated broker, on a segregated account and no one else can access it but you.
             </Typography>

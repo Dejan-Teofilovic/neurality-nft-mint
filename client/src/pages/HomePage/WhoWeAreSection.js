@@ -39,7 +39,7 @@ export default function WhoWeAreSection() {
               fontWeight={700}
               textTransform="uppercase"
               textAlign="center"
-            >Creative Teams</Typography>
+            >Creative Team</Typography>
           </MotionInView>
         </Box>
         <MotionInView variants={varFadeInDown}>

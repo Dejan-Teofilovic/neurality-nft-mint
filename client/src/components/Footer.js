@@ -127,7 +127,7 @@ export default function Footer() {
                     <Box component="img" src="/assets/images/logo.png" alt="logo" width="60%" />
                   </Stack>
                   <Typography mt={2} color={grey[400]} fontSize={16} textAlign={{ xs: 'center', md: 'left' }}>
-                    1,777 NFTs like No Others
+                    1,777 NFTs like No Other
                   </Typography>
                 </Box>
                 <Box>
