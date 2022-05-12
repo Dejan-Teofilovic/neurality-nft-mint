@@ -1,5 +1,23 @@
 import React, { useState } from 'react';
-import { Box, Button as MuiButton, Container, Grid, Link, Stack, Typography, styled, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { 
+  Box, 
+  Button as MuiButton, 
+  Container, 
+  Grid, 
+  Link, 
+  Stack, 
+  Typography, 
+  styled, 
+  Dialog, 
+  DialogTitle, 
+  DialogContent, 
+  DialogContentText, 
+  DialogActions, 
+  List, 
+  ListItem, 
+  ListItemIcon, 
+  ListItemText 
+} from '@mui/material';
 import { grey, purple } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
 import { MotionInView, varFadeInLeft, varFadeInRight } from '../animations';
