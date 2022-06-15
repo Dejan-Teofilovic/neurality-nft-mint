@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { AlertMessageProvider } from './contexts/AlertMessageContext';
 import { WalletProvider } from './contexts/WalletContext';
 import { WhitelistProvider } from './contexts/WhitelistContext';

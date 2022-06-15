@@ -1,3 +1,5 @@
+import { grey } from "@mui/material/colors";
+
 export const SUCCESS = 'success';
 export const INFO = 'info';
 export const ERROR = 'error';
@@ -13,7 +15,7 @@ export const WARNING = 'warning';
 // export const DECIMALS = 18;
 
 //  Polygon
-export const CHAIN_ID = 137; 
+export const CHAIN_ID = 137;
 export const CHAIN_NAME = 'Polygon';
 export const RPC_URLS = ['https://polygon-rpc.com'];
 export const BLOCK_EXPLORER_URLS = ['https://polygonscan.com/'];
@@ -837,3 +839,8 @@ export const NFT_PRICE_WH2 = "1550";
 export const NFT_PRICE_PUBLIC = "2000";
 
 export const NO_ETHEREUM_OBJECT = /No Ethereum provider was found on window.ethereum/;
+
+export const COLOR_PRIMARY = '#7F1BD2';
+export const COLOR_SECONDARY = grey[500];
+export const COLOR_BRIGHT = 'white';
+export const COLOR_DARK = grey[900];

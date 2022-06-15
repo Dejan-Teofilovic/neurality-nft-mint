@@ -59,22 +59,40 @@ export default function WhoWeAreSection() {
             {
               DATA_OF_MEMBERS.map(dataItem => (
                 <Grid item xs={12} sm={6} md={3} key={dataItem.id}>
-                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <CardMedia component="img" alt={dataItem.name} image={dataItem.image} />
-                    <CardContent>
+                    <CardContent
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        flexGrow: 1
+                      }}
+                    >
                       <Stack spacing={1}>
-                        <Typography fontSize={16} fontWeight={600}>{dataItem.position}</Typography>
-                        <Typography textAlign="center" fontSize={24} fontWeight={800} color="white" letterSpacing={2}>
+                        <Typography fontSize={16} fontWeight={600}>
+                          {dataItem.position}
+                        </Typography>
+                        <Typography
+                          textAlign="center"
+                          fontSize={24}
+                          fontWeight={800}
+                          color="white"
+                          letterSpacing={2}
+                        >
                           {dataItem.name}
                         </Typography>
-                        <Typography fontSize={14} color={grey[300]}>{dataItem.description}</Typography>
+                        <Typography fontSize={14} color={grey[300]}>
+                          {dataItem.description}
+                        </Typography>
+                      </Stack>
+
+                      <Stack direction="row" justifyContent="center" alignItems="center" mt={3}>
+                        <IconButton component={Link} href={dataItem.linkedinUrl} target="_blank">
+                          <Icon icon="akar-icons:linkedin-box-fill" />
+                        </IconButton>
                       </Stack>
                     </CardContent>
-                    <Stack direction="row" justifyContent="center" alignItems="center" pb={2}>
-                      <IconButton component={Link} href={dataItem.linkedinUrl} target="_blank">
-                        <Icon icon="akar-icons:linkedin-box-fill" />
-                      </IconButton>
-                    </Stack>
                   </Card>
                 </Grid>
               ))

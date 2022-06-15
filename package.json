@@ -31,7 +31,9 @@
     "jsonwebtoken": "^8.5.1",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.2.31",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
