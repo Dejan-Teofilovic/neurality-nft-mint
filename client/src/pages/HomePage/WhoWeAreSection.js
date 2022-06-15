@@ -1,8 +1,21 @@
 import React from 'react';
-import { Box, Card, CardActions, CardContent, CardMedia, Container, Grid, IconButton, Link, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  Grid,
+  IconButton,
+  Link,
+  Stack,
+  Typography
+} from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Icon } from '@iconify/react';
 import { MotionInView, varFadeInDown, varFadeInUp } from '../../animations';
+import Carousel from '../../components/Carousel';
+import MHidden from '../../components/@mui-extend/MHidden';
 
 const DATA_OF_MEMBERS = [
   {
@@ -33,16 +46,92 @@ const DATA_OF_MEMBERS = [
     id: 4,
     name: 'Ben',
     position: 'Dummy',
-    description: 'Behind the name "New" is the Web3 developer of our team. He is the one who coded the site you are currently on. He is an experienced Web and Blockchain developer. He started web development when he was a student and after graduation, he jumped into the ocean of Blockchain. Until now, he has developed some sites for E-Commerce, HR management, NFT marketplace and NFT mint. Currently he is working on some Blockchain projects including Neurality.',
-    image: '/assets/images/new.jpg',
+    description: 'Ben has been working the FX brokering industry for almost a decade and has held numerous leadership roles in some of the largest brokers globally including OANDA and Axi. For the last 2 years Ben has been running Ox Securities which has grown to be a real global player in the FX and Crypto space. Ben brings expertise in management account technology and customised liquidity solutions.',
+    image: '/assets/images/ben.png',
     linkedinUrl: 'https://www.linkedin.com/in/ben-malone-737144143/'
   }
 ];
 
+const SLIDE_SETTINGS = {
+  dots: false,
+  arrows: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  autoplay: true,
+  autoplaySpeed: 9000,
+  responsive: [
+    {
+      breakpoint: 1280,
+      settings: { slidesToShow: 4 }
+    },
+    {
+      breakpoint: 1024,
+      settings: { slidesToShow: 3 }
+    },
+    {
+      breakpoint: 960,
+      settings: { slidesToShow: 2 }
+    },
+    {
+      breakpoint: 480,
+      settings: { slidesToShow: 1, centerPadding: '0' }
+    }
+  ]
+};
+
+const ProfileCard = ({ dataItem }) => (
+  <Card
+    sx={{
+      height: '99%',
+      mx: 1,
+      display: 'flex',
+      flexDirection: 'column'
+    }}
+    key={dataItem.id}
+  >
+    <CardMedia component="img" alt={dataItem.name} image={dataItem.image} />
+    <CardContent
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        flexGrow: 1
+      }}
+    >
+      <Stack spacing={1}>
+        <Typography fontSize={16} fontWeight={600}>
+          {dataItem.position}
+        </Typography>
+        <Typography
+          textAlign="center"
+          fontSize={24}
+          fontWeight={800}
+          color="white"
+          letterSpacing={2}
+        >
+          {dataItem.name}
+        </Typography>
+        <Typography fontSize={14} color={grey[300]}>
+          {dataItem.description}
+        </Typography>
+      </Stack>
+
+      <Stack direction="row" justifyContent="center" alignItems="center" mt={3}>
+        <IconButton component={Link} href={dataItem.linkedinUrl} target="_blank">
+          <Icon icon="akar-icons:linkedin-box-fill" />
+        </IconButton>
+      </Stack>
+    </CardContent>
+  </Card>
+);
+
 export default function WhoWeAreSection() {
   return (
     <Box>
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box>
           <MotionInView variants={varFadeInUp}>
             <Typography
@@ -55,49 +144,26 @@ export default function WhoWeAreSection() {
           </MotionInView>
         </Box>
         <MotionInView variants={varFadeInDown}>
-          <Grid container spacing={4} mt={2}>
-            {
-              DATA_OF_MEMBERS.map(dataItem => (
-                <Grid item xs={12} sm={6} md={3} key={dataItem.id}>
-                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <CardMedia component="img" alt={dataItem.name} image={dataItem.image} />
-                    <CardContent
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        flexGrow: 1
-                      }}
-                    >
-                      <Stack spacing={1}>
-                        <Typography fontSize={16} fontWeight={600}>
-                          {dataItem.position}
-                        </Typography>
-                        <Typography
-                          textAlign="center"
-                          fontSize={24}
-                          fontWeight={800}
-                          color="white"
-                          letterSpacing={2}
-                        >
-                          {dataItem.name}
-                        </Typography>
-                        <Typography fontSize={14} color={grey[300]}>
-                          {dataItem.description}
-                        </Typography>
-                      </Stack>
-
-                      <Stack direction="row" justifyContent="center" alignItems="center" mt={3}>
-                        <IconButton component={Link} href={dataItem.linkedinUrl} target="_blank">
-                          <Icon icon="akar-icons:linkedin-box-fill" />
-                        </IconButton>
-                      </Stack>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))
-            }
-          </Grid>
+          <MHidden width="mdUp">
+            <Box mt={2}>
+              <Carousel
+                slideSettings={SLIDE_SETTINGS}
+                carouselItemComponent={ProfileCard}
+                data={DATA_OF_MEMBERS}
+              />
+            </Box>
+          </MHidden>
+          <MHidden width="mdDown">
+            <Grid container mt={2} spacing={1}>
+              {
+                DATA_OF_MEMBERS.map(dataItem => (
+                  <Grid item md={3} key={dataItem.id}>
+                    <ProfileCard dataItem={dataItem} />
+                  </Grid>
+                ))
+              }
+            </Grid>
+          </MHidden>
         </MotionInView>
       </Container>
     </Box >
