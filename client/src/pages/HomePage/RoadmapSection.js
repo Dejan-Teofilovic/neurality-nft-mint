@@ -107,7 +107,7 @@ export default function RoadmapSection() {
             <MotionInView variants={varFadeInRight}>
               <Box
                 component="img"
-                src="/assets/images/landing-human.jpg"
+                src="/assets/images/roadmap-hero.png"
                 alt="roadmap"
                 position="absolute"
                 sx={{ top: 250, display: { xs: 'none', sm: 'none', md: 'block' } }}
