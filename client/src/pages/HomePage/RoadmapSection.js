@@ -103,15 +103,38 @@ export default function RoadmapSection() {
               ))}
             </Timeline>
           </Grid>
-          <Grid item md={2} sx={{ position: 'relative' }}>
+          <Grid item md={2}>
             <MotionInView variants={varFadeInRight}>
-              <Box
+              <Stack
+                alignItems="center"
+                position="relative"
+              >
+                <Box
+                  component="img"
+                  src="/assets/images/roadmap-sign.png"
+                  alt="roadmap"
+                />
+                <Box
+                  component="img"
+                  src="/assets/images/roadmap-rocket.png"
+                  alt="roadmap"
+                  width="90%"
+                />
+                <Box
+                  component="img"
+                  src="/assets/images/roadmap-smoke.png"
+                  alt="roadmap"
+                  position="absolute"
+                  sx={{ bottom: 0 }}
+                />
+              </Stack>
+              {/* <Box
                 component="img"
                 src="/assets/images/roadmap-hero.png"
                 alt="roadmap"
                 position="absolute"
                 sx={{ top: 250, display: { xs: 'none', sm: 'none', md: 'block' } }}
-              />
+              /> */}
             </MotionInView>
           </Grid>
         </Grid>
