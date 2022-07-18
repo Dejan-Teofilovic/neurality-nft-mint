@@ -110,7 +110,7 @@ export default function RoadmapSection() {
                 src="/assets/images/roadmap-hero.png"
                 alt="roadmap"
                 position="absolute"
-                sx={{ top: 250, display: { xs: 'none', sm: 'none', md: 'block' }, height: 700 }}
+                sx={{ top: 250, display: { xs: 'none', sm: 'none', md: 'block' } }}
               />
             </MotionInView>
           </Grid>
