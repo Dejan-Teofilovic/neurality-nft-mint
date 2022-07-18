@@ -113,12 +113,14 @@ export default function RoadmapSection() {
                   component="img"
                   src="/assets/images/roadmap-sign.png"
                   alt="roadmap"
+                  zIndex={10}
                 />
                 <Box
                   component="img"
                   src="/assets/images/roadmap-rocket.png"
                   alt="roadmap"
                   width="90%"
+                  zIndex={20}
                 />
                 <Box
                   component="img"
@@ -126,6 +128,7 @@ export default function RoadmapSection() {
                   alt="roadmap"
                   position="absolute"
                   sx={{ bottom: 0 }}
+                  zIndex={10}
                 />
               </Stack>
               {/* <Box
