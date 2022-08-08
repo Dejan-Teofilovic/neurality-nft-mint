@@ -9,7 +9,7 @@
 - **Skype:** [@sin085](https://join.skype.com/invite/xat3AgpiRVOI)
 
 ## Release date
-TBD
+Apr 10, 2022
 
 ## Environment
 - `Node.js v14.17.0`
