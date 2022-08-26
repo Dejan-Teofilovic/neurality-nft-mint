@@ -10,19 +10,22 @@ export default function AboutUsSection() {
         <MotionInView variants={varFadeInUp}>
           <Stack mt={5} spacing={3}>
             <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>
-              NEYX City, 2077. Artificial intelligence is omnipresent on planet earth. Robots, then much more intelligent, have ended up replacing humans in their work and in their daily tasks. Humans find themselves free of all financial constraints, but subject to a world governed by algorithms. The population is totally dependent on these technologies and cannot survive without them. In this hyper-connected society, every citizen derives his or her primary income from robots and AI that perform in decentralized finance and traditional financial markets. This story could soon become yours. Welcome to the Neurality Project matrix.
+              <Typography component="span" fontWeight={900} fontSize="inherit">
+                NEYX
+              </Typography> City, 2077. Artificial intelligence is omnipresent on planet earth. Robots, then much more intelligent, have ended up replacing humans in their work and in their daily tasks. Humans find themselves free of all financial constraints, but subject to a world governed by algorithms. The population is totally dependent on these technologies and cannot survive without them. In this hyper-connected society, every citizen derives his or her primary income from robots and AI that perform in decentralized finance and traditional financial markets. This story could soon become yours. Welcome to the Neurality Project matrix.
             </Typography>
-            <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>
-              Here you will find out how banks and hedge funds have been getting rich for years and how you can do the same thing as them without any prior knowledge of the financial markets, without spending hours behind the graphs and without any mental burden for you as an investor, with monthly returns of 20%. Yes, you read that right. Intrigued? Read on.
-            </Typography>
+
             <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>
               <Typography
                 component="span"
                 color={purple[700]}
                 fontSize={{ xs: 14, sm: 18, md: 20 }}
                 fontWeight={900}
-              >How such a return is possible?</Typography> <br />
-              Neurality is the end result of 5 long years of evolution of an algotrading strategy that trades the XAU/USD known as Gold pair. Situated between the scalper and the intraday, NEYX is coded behind an IA (Intelligent Automation) and embeds a hundred decisional strategies behind a Neural Network/Deep Learning prediction system coupled with a smart grid calculation system, without using martingale or any dangerous strategies. Neurality is able to adapt itself to market fluctuations by diminishing the impact of Gold volatility. In short, it's a cash machine.
+              >
+                Money doesn't grow on trees, it grows in our algorithms
+              </Typography> <br />
+              Neurality Project is the end result of 5 long years of evolution of an algotrading strategy that trades the XAU/USD known as Gold pair. Situated between the scalper and the intraday, NEYX is coded behind an IA (Intelligent Automation) and embeds a hundred decisional strategies behind a Neural Network/Deep Learning prediction system coupled with a smart grid calculation system, without using martingale or any dangerous strategies. Neurality is able to adapt itself to market fluctuations by diminishing the impact of Gold volatility. In short, it's a cash machine. Over the past few years we have tested hundreds (if not thousands) of trading robots, but we have never had as much confidence in an algorithm as we do with NEYX. There is no need for a human presence, the robot is fully autonomous, whatever the market conditions. We know what some people may think about trading robots because of their past bad experiences. We understand because we have been there too and had to spend a lot of time and money before finding a viable fully automated trading solution.
+
               The numbers never lie, see for yourself with this 6 months real account statement, a low drawdown for a total profit of <Typography component="span" fontSize={{ xs: 14, sm: 18, md: 20 }} fontWeight={800}>$76927</Typography>.
             </Typography>
 

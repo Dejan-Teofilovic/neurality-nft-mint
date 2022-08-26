@@ -19,9 +19,7 @@ import { MotionInView, varFadeInDown, varFadeInUp } from '../../animations';
 const DATA_1 = ['NFTs', 'Trading bot access', 'Discord access'];
 const DATA_2 = [
   'Playtoearn game access: a retrowave car racing game',
-  'Token ICO',
-  'All Metaverse versions',
-  'Incentives, travel, yacht parties...'
+  'Token ICO'
 ];
 
 export default function OverviewSection() {
@@ -63,7 +61,7 @@ export default function OverviewSection() {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Card>
+              <Card sx={{ height: '100%' }}>
                 <CardHeader title="What I will get in the future" />
                 <List>
                   {

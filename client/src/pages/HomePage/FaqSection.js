@@ -25,7 +25,7 @@ const data = [
   {
     question: 'What is a MAM account?',
     answer:
-      'Multi-account trading. Individual investors advance capital and our robot makes trades that are replicated for all accounts in the pool. The profits are in proportion to the investment of each. Each investor keeps control of their funds and withdraws when they wish. We have no access to your funds.'
+      'Multi-account trading. Individual investors advance capital and our robot makes trades that are replicated for all accounts in the pool. The profits are in proportion to the investment of each.'
   },
   {
     question: 'Can I deposit in BTC on your broker?',
@@ -34,6 +34,14 @@ const data = [
   {
     question: 'What are the advantages of owning our NFTs?',
     answer: 'Our collections are limited and will become increasingly inaccessible. The value of the NFT may explode as the community grows.'
+  },
+  {
+    question: 'How safe is my money?',
+    answer: 'Your money is safe with our regulated broker. Each investor keeps control of their funds and withdraws when they wish. We have no access to your funds.'
+  },
+  {
+    question: 'Will I have to pay anything else after I buy the NFT?',
+    answer: 'No, nothing else. The NFT is valid for life. With Neurality, there are no monthly subscriptions, licenses or hidden fees.'
   }
 ];
 

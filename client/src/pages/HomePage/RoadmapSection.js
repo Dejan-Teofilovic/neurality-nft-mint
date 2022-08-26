@@ -35,21 +35,21 @@ const DATA = [
   {
     id: '2023',
     title: 'Q2',
-    description: 'Launch of Metaverse V1, Development of Metaverse V2. Complete Open-world immersion where users can buy anything, lands, properties, yachts, cars, even champagne with tokens or NFTs. The ability for the users to resell and get more ROI on their tokens.',
+    description: 'Staking, In-app purchase and Play-to-earn functionalities.',
     dotColor: 'white'
   },
-  {
-    id: '2023',
-    title: 'Q3-Q4',
-    description: 'Development of Metaverse V2',
-    dotColor: 'white'
-  },
-  {
-    id: '2024',
-    title: 'Q1-Q2',
-    description: 'Launch of Metaverse V2',
-    dotColor: 'white'
-  }
+  // {
+  //   id: '2023',
+  //   title: 'Q3-Q4',
+  //   description: 'Development of Metaverse V2',
+  //   dotColor: 'white'
+  // },
+  // {
+  //   id: '2024',
+  //   title: 'Q1-Q2',
+  //   description: 'Launch of Metaverse V2',
+  //   dotColor: 'white'
+  // }
 ];
 
 const TimelineItem = styled(MuiTimelineItem)(({ theme }) => ({
@@ -119,7 +119,7 @@ export default function RoadmapSection() {
                   component="img"
                   src="/assets/images/roadmap-rocket.png"
                   alt="roadmap"
-                  width="90%"
+                  width="55%"
                   zIndex={20}
                 />
                 <Box
