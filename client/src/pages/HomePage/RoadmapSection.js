@@ -17,33 +17,33 @@ const DATA = [
   {
     id: '2022',
     title: 'Q3',
-    description: 'Building community. Launch of NFT1 and access to trading bot through MAM',
+    description: 'Mint the NFT for $0',
     dotColor: '#d02560'
   },
   {
     id: '2022',
     title: 'Q4',
-    description: 'Development of Unity 3D Play-to-earn car racing game and ICO/IDO landing page with smart contracts and music creation',
+    description: 'Fill the form on the secret page',
     dotColor: 'white'
   },
   {
     id: '2023',
     title: 'Q1',
-    description: 'Launch of the Play-to-earn car racing game and ICO/ICO, Development of Metaverse V1, Staking, In-app purchase and Play-to-earn functionalities.',
+    description: 'KYC on broker side',
     dotColor: 'white'
   },
   {
     id: '2023',
     title: 'Q2',
-    description: 'Staking, In-app purchase and Play-to-earn functionalities.',
+    description: 'Fund your trading account',
     dotColor: 'white'
   },
-  // {
-  //   id: '2023',
-  //   title: 'Q3-Q4',
-  //   description: 'Development of Metaverse V2',
-  //   dotColor: 'white'
-  // },
+  {
+    id: '2023',
+    title: 'Q3-Q4',
+    description: 'Enjoy your profits',
+    dotColor: 'white'
+  },
   // {
   //   id: '2024',
   //   title: 'Q1-Q2',
@@ -72,7 +72,7 @@ export default function RoadmapSection() {
                 fontWeight={700}
                 textAlign="center"
                 textTransform="uppercase"
-              >Roadmap</Typography>
+              >5 STEPS TO JOIN US</Typography>
             </MotionInView>
 
             <Timeline>
