@@ -24,28 +24,24 @@ export default function AboutUsSection() {
               >
                 Money doesn't grow on trees, it grows in our algorithms
               </Typography> <br />
-              Neurality Project is the end result of 5 long years of evolution of an algotrading strategy that trades the XAU/USD known as Gold pair. Situated between the scalper and the intraday, NEYX is coded behind an IA (Intelligent Automation) and embeds a hundred decisional strategies behind a Neural Network/Deep Learning prediction system coupled with a smart grid calculation system, without using martingale or any dangerous strategies. Neurality is able to adapt itself to market fluctuations by diminishing the impact of Gold volatility. In short, it's a cash machine. Over the past few years we have tested hundreds (if not thousands) of trading robots, but we have never had as much confidence in an algorithm as we do with NEYX. There is no need for a human presence, the robot is fully autonomous, whatever the market conditions. We know what some people may think about trading robots because of their past bad experiences. We understand because we have been there too and had to spend a lot of time and money before finding a viable fully automated trading solution.
-
-              The numbers never lie, see for yourself with this 6 months real account statement, a low drawdown for a total profit of <Typography component="span" fontSize={{ xs: 14, sm: 18, md: 20 }} fontWeight={800}>$76927</Typography>.
+              Neurality Project is the final result of several years of evolution of an algotrading strategy that trades the XAU/USD pair called Gold. Scalping one by one, deferred orders, with a maximum risk of 1% per position, based on an AI engine with risk management adapted to sudden fluctuations in the price of gold. Orders last only a few seconds and are placed from a server capable of supporting very fast transmission times, with a latency of less than a millisecond. Over the past few years we have tested hundreds of trading robots, but we have never had as much confidence in an algorithm as we do with NEYX. There is no need for a human presence, the robot is fully autonomous, whatever the market conditions.
+              {/* <Typography component="span" fontSize={{ xs: 14, sm: 18, md: 20 }} fontWeight={800}>$76927</Typography>. */}
             </Typography>
 
-            <MotionInView variants={varFadeInDown}>
+            {/* <MotionInView variants={varFadeInDown}>
               <Stack direction="row" justifyContent="center">
                 <Box component="img" src="/assets/images/chart.png" alt="" width="90%" />
               </Stack>
-            </MotionInView>
-
-            <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>
-              Usually, this kind of high-end service is aimed at large investors (minimum 50k per client). WE WANT TO CHANGE THE GAME! Because we want as many people as possible to be able to invest, we chose to use a MAM (Multi Account Manager) with our partner broker. We have created a win-win system for everyone, investors receive their profits in proportion to their investment automatically. We take NO commission on performances, whereas hedge funds and proprietary trading companies would reduce your profit by 40-60%. Thus your money stays safe on our regulated broker, on a segregated account and no one else can access it but you.
-            </Typography>
+            </MotionInView> */}
+            
             <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }}>
               <Typography
                 component="span"
                 color={purple[700]}
                 fontSize={{ xs: 14, sm: 18, md: 20 }}
                 fontWeight={900}
-              >Neurality, a rocket ship for Elysium?</Typography> <br />
-              We live in a fast-paced world, and the trading business is no exception. Today, the majority of transactions in the financial markets are issued by robots. Just look at the empty trading floors on Wall Street, where there are far more computers than humans. If you are one of those who place orders by hand today, you are at a significant disadvantage. Humans have their vices and limitations, but robots, unlike humans, have no emotions, no need to sleep, and virtually no limits. Moreover, because of the economic and political context we live in, we share a sense of urgency about the race to the Elysium. Indeed, the gap between rich and poor is widening dramatically every year. We believe that the social ladder could be threatened by powerful entities that want a monopoly on power. With Neurality, we want to help keep the social lift working. A collection of 1,777 pieces will be available soon and I guarantee you won't want to miss it.
+              >We trust in the process</Typography> <br />
+              We live in a fast-paced world, and the trading business is no exception. Today, the majority of transactions in the financial markets are issued by robots. Just look at the empty trading floors on Wall Street, where there are far more computers than humans. If you are one of those who place orders by hand today, you are at a significant disadvantage. Humans have their vices and limitations, but robots, unlike humans, have no emotions, no need to sleep, and virtually no limits. Moreover, because of the economic and political context we live in, we share a sense of urgency. Indeed, the gap between the rich and the poor is widening considerably every year. We believe that the social elevator could be threatened. Neurality comes to redistribute the cards.
             </Typography>
           </Stack>
         </MotionInView>
