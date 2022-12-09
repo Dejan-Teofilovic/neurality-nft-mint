@@ -13,6 +13,16 @@ module.exports = function override(config, env) {
       Buffer: ['buffer', 'Buffer'],
     }),
   );
+  config.module.loaders = [
+    {
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      query: {
+        presets: ['es2015']
+      }
+    }
+  ];
 
   return config;
 };

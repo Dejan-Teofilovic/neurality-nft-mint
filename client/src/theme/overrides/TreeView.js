@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Icon } from '@iconify/react';
 import plusSquareOutline from '@iconify/icons-eva/plus-square-outline';
 import minusSquareOutline from '@iconify/icons-eva/minus-square-outline';

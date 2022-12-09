@@ -17,10 +17,10 @@ import { Icon } from '@iconify/react';
 import { MotionInView, varFadeInDown, varFadeInUp } from '../../animations';
 
 const DATA_1 = ['NFTs', 'Trading bot access', 'Discord access'];
-const DATA_2 = [
-  'Playtoearn game access: a retrowave car racing game',
-  'Token ICO'
-];
+// const DATA_2 = [
+//   'Playtoearn game access: a retrowave car racing game',
+//   'Token ICO'
+// ];
 
 export default function OverviewSection() {
   return (

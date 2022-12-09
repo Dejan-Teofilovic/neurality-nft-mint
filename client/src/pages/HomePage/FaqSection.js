@@ -16,7 +16,7 @@ import { MotionInView, varFadeInDown, varFadeInUp } from '../../animations';
 const data = [
   {
     question: 'How to invest?',
-    answer: 'If you want to be part of the party, the one and only way is to get one of our NFTs. Without an NFT, you can\'t register.'
+    answer: 'If you want to be part of the party, the one and only way is to get one of our NFTs. Without an NFT, you can\'t register. Then you need to fund your broker’s account to start trading with our algorithm.'
   },
   {
     question: 'How do you make the connection between the DeFi and the CeFi?',
@@ -41,7 +41,11 @@ const data = [
   },
   {
     question: 'Will I have to pay anything else after I buy the NFT?',
-    answer: 'No, nothing else. The NFT is valid for life. With Neurality, there are no monthly subscriptions, licenses or hidden fees.'
+    answer: 'No, you won\'t. Your NFT access is valid for life, even if you sell it on the secondary market. With Neurality, there are no monthly subscriptions, licenses or hidden fees.'
+  },
+  {
+    question: 'What is KYC?',
+    answer: 'Know Your Customer is the name given to the process of verifying the identity of a company\'s customers.'
   }
 ];
 

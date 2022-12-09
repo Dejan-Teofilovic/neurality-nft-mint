@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 // material
 import { CssBaseline } from '@mui/material';
 import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
