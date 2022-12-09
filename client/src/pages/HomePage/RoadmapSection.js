@@ -15,32 +15,32 @@ import { MotionInView, varFadeInUp, varFadeInRight, varFadeInDown } from '../../
 
 const DATA = [
   {
-    id: '2022',
-    title: 'Q3',
+    id: '',
+    title: '1',
     description: 'Mint the NFT for $0',
     dotColor: '#d02560'
   },
   {
-    id: '2022',
-    title: 'Q4',
+    id: '',
+    title: '2',
     description: 'Fill the form on the secret page',
     dotColor: 'white'
   },
   {
-    id: '2023',
-    title: 'Q1',
+    id: '',
+    title: '3',
     description: 'KYC on broker side',
     dotColor: 'white'
   },
   {
-    id: '2023',
-    title: 'Q2',
+    id: '',
+    title: '4',
     description: 'Fund your trading account',
     dotColor: 'white'
   },
   {
-    id: '2023',
-    title: 'Q3-Q4',
+    id: '',
+    title: '5',
     description: 'Enjoy your profits',
     dotColor: 'white'
   },
@@ -86,7 +86,7 @@ export default function RoadmapSection() {
                     <TimelineContent>
                       <Paper sx={{ p: 3, bgcolor: 'grey.50012' }}>
                         <Typography fontSize={{ xs: 14, sm: 18 }} mb={2} fontWeight={800}>
-                          .{item.id}&nbsp;
+                          {item.id}&nbsp;
                           <Typography component="span" color="white" fontSize={{ xs: 18, sm: 28 }}>
                             {item.title}
                           </Typography>

@@ -38,12 +38,29 @@ export default function OverviewSection() {
 
         <Stack direction="row" justifyContent="center" mt={3}>
           <MotionInView variants={varFadeInUp}>
-            <Box component="img" src="/assets/images/overview.jpg" alt="" width={500} />
+            <Box component="img" src="/assets/images/overview.jpg" alt="" width={1000} />
           </MotionInView>
         </Stack>
 
+
+
         <MotionInView variants={varFadeInDown}>
-          <Grid container spacing={8} mt={1}>
+          <Stack direction="row" justifyContent="center" mt={3}>
+            <Card sx={{ height: '100%' }}>
+              <CardHeader title="What I will get now after I mint" />
+              <List>
+                {
+                  DATA_1.map(item => (
+                    <ListItem key={item} sx={{ color: 'white' }}>
+                      <ListItemIcon><Icon icon="bi:dot" /></ListItemIcon>
+                      <ListItemText>{item}</ListItemText>
+                    </ListItem>
+                  ))
+                }
+              </List>
+            </Card>
+          </Stack>
+          {/* <Grid container spacing={8} mt={1}>
             <Grid item xs={12} md={6}>
               <Card sx={{ height: '100%' }}>
                 <CardHeader title="What I will get now after I mint" />
@@ -61,7 +78,7 @@ export default function OverviewSection() {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              {/* <Card sx={{ height: '100%' }}>
+              <Card sx={{ height: '100%' }}>
                 <CardHeader title="What I will get in the future" />
                 <List>
                   {
@@ -73,9 +90,9 @@ export default function OverviewSection() {
                     ))
                   }
                 </List>
-              </Card> */}
+              </Card>
             </Grid>
-          </Grid>
+          </Grid> */}
         </MotionInView>
         <MotionInView variants={varFadeInUp}>
           <Typography color={grey[500]} fontSize={{ xs: 14, sm: 18, md: 20 }} sx={{ mt: 5 }}>
@@ -101,7 +118,7 @@ export default function OverviewSection() {
 
         <Stack direction="row" justifyContent="center" mt={3}>
           <MotionInView variants={varFadeInUp}>
-            <Box component="img" src="/assets/images/resale.jpg" alt="" width={500} />
+            <Box component="img" src="/assets/images/resale.jpg" alt="" width={1000} />
           </MotionInView>
         </Stack>
       </Container>
