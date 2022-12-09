@@ -61,7 +61,7 @@ export default function OverviewSection() {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Card sx={{ height: '100%' }}>
+              {/* <Card sx={{ height: '100%' }}>
                 <CardHeader title="What I will get in the future" />
                 <List>
                   {
@@ -73,7 +73,7 @@ export default function OverviewSection() {
                     ))
                   }
                 </List>
-              </Card>
+              </Card> */}
             </Grid>
           </Grid>
         </MotionInView>
