@@ -22,7 +22,7 @@ export default function AboutUsSection() {
                 fontSize={{ xs: 14, sm: 18, md: 20 }}
                 fontWeight={900}
               >
-                Money doesn't grow on trees, it grows in our algorithms
+                High frequency trading in deferral
               </Typography> <br />
               Neurality Project is the final result of several years of evolution of an algotrading strategy that trades the XAU/USD pair called Gold. Scalping one by one, deferred orders, with a maximum risk of 1% per position, based on an AI engine with risk management adapted to sudden fluctuations in the price of gold. Orders last only a few seconds and are placed from a server capable of supporting very fast transmission times, with a latency of less than a millisecond. Over the past few years we have tested hundreds of trading robots, but we have never had as much confidence in an algorithm as we do with NEYX. There is no need for a human presence, the robot is fully autonomous, whatever the market conditions.
               {/* <Typography component="span" fontSize={{ xs: 14, sm: 18, md: 20 }} fontWeight={800}>$76927</Typography>. */}
