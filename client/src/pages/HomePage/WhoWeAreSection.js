@@ -41,7 +41,7 @@ const DATA_OF_MEMBERS = [
     position: 'Developer',
     description: '<b>OpenThink</b> is the Web3 developer of the team. He is the one who coded the site you are currently on. He is an experienced web and blockchain developer. He started web development as a student and after graduation he jumped into the blockchain ocean. So far he has developed sites for e-commerce, human resource management, NFT marketplace and NFT currency. He is currently working on blockchain projects, including Neurality.',
     image: '/assets/images/new.jpg',
-    linkedinUrl: 'https://www.linkedin.com/in/maverick-sin-4623b4259/'
+    linkedinUrl: 'https://linkedin.com/in/atsuo-koizumi-7050b525b'
   },
   // {
   //   id: 4,
