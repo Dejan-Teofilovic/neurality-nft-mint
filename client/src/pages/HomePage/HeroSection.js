@@ -95,7 +95,7 @@ export default function HeroSection() {
                   <Box
                     component="img"
                     alt="hero"
-                    src="/assets/images/landing-boxes.png"
+                    src="/assets/images/landing-boxes.webp"
                     sx={{}}
                   />
                 </motion.div>
