@@ -71,7 +71,7 @@ export default function HeroSection() {
           <ContentStyle>
             <motion.div variants={varFadeInRight}>
               <Typography variant="h1" sx={{ color: 'white' }}>
-                NFTs like No Other
+                NFTs like<br /> No Other
               </Typography>
             </motion.div>
 
