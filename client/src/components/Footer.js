@@ -191,7 +191,7 @@ export default function Footer() {
                   component={Link}
                   variant="contained"
                   sx={{ borderRadius: 0, fontSize: 18, p: 1 }}
-                  href="https://twitter.com/NeuralityPro"
+                  href="https://twitter.com/NEYX_AI"
                 >
                   <Icon icon="akar-icons:twitter-fill" />
                 </Button>

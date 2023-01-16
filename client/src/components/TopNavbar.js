@@ -111,7 +111,7 @@ export default function TopNavbar() {
                   </IconButton>
                 </Link>
 
-                <Link target="_blank" href="https://twitter.com/NeuralityPro">
+                <Link target="_blank" href="https://twitter.com/NEYX_AI">
                   <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
                     <Icon icon="akar-icons:twitter-fill" />
                   </IconButton>
