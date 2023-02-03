@@ -18,6 +18,7 @@ Apr 10, 2022
 ## Stack
 - **Framework:** `React.js v17.0.2`, `Express v4.17.3`
 - **Theme:** `MUI v5.4.0`
+- **Blockchain:** `Polygon`
 
 ## How to run the project.
 1. Please open terminal window in the root directory.
