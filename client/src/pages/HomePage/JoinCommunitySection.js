@@ -33,7 +33,7 @@ export default function JoinCommunitySection() {
                     component={Link}
                     variant="contained"
                     sx={{ borderRadius: 0, fontSize: { xs: 14, sm: 18 }, py: 1, px: 3 }}
-                    href="https://t.me/NeuralityProject"
+                    href="https://t.me/NEYX_777"
                     target="_blank"
                   >
                     Join our Telegram
@@ -43,7 +43,7 @@ export default function JoinCommunitySection() {
                     component={Link}
                     variant="contained"
                     sx={{ borderRadius: 0, fontSize: { xs: 14, sm: 18 }, py: 1, px: 3 }}
-                    href="https://twitter.com/NEYX_AI"
+                    href="https://twitter.com/NEYX_777"
                     target="_blank"
                   >
                     Join our Twitter

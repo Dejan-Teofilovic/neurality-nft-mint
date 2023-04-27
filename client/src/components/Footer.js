@@ -182,7 +182,7 @@ export default function Footer() {
                   component={Link}
                   variant="contained"
                   sx={{ borderRadius: 0, fontSize: 18, p: 1 }}
-                  href="https://t.me/NeuralityProject"
+                  href="https://t.me/NEYX_777"
                 >
                   <Icon icon="bxl:telegram" />
                 </Button>
@@ -191,7 +191,7 @@ export default function Footer() {
                   component={Link}
                   variant="contained"
                   sx={{ borderRadius: 0, fontSize: 18, p: 1 }}
-                  href="https://twitter.com/NEYX_AI"
+                  href="https://twitter.com/NEYX_777"
                 >
                   <Icon icon="akar-icons:twitter-fill" />
                 </Button>

@@ -105,13 +105,13 @@ export default function TopNavbar() {
 
             <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
               <Stack direction="row" justifyContent="center" alignItems="center" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                <Link target="_blank" href="https://t.me/NeuralityProject">
+                <Link target="_blank" href="https://t.me/NEYX_777">
                   <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
                     <Icon icon="bxl:telegram" />
                   </IconButton>
                 </Link>
 
-                <Link target="_blank" href="https://twitter.com/NEYX_AI">
+                <Link target="_blank" href="https://twitter.com/NEYX_777">
                   <IconButton sx={{ color: grey[100], fontSize: { xs: 16, sm: 20, md: 24 } }}>
                     <Icon icon="akar-icons:twitter-fill" />
                   </IconButton>
